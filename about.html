@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the Panchang is Calculated</title>
+<meta name="description" content="Methods behind the panchang: astronomy-engine positions, Lahiri ayanamsa, sunrise-based tithi and festival rules.">
+<link rel="canonical" href="https://priya4042.github.io/panchang/about.html">
+<meta property="og:title" content="How the Panchang is Calculated">
+<meta property="og:description" content="Methods behind the panchang: astronomy-engine positions, Lahiri ayanamsa, sunrise-based tithi and festival rules.">
+<meta property="og:image" content="https://priya4042.github.io/panchang/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#B71C1C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/panchang.css">
+<link rel="preload" href="assets/events.json" as="fetch" crossorigin>
+</head>
+<body data-page="info">
+<a class="skip" href="#main"><span data-only="en">Skip to content</span><span data-only="hi">सामग्री पर जाएँ</span></a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M3 24h28" stroke="#B71C1C" stroke-width="2.4" stroke-linecap="round"/><path d="M8 24a9 9 0 0 1 18 0z" fill="#E8A317"/><g stroke="#E8A317" stroke-width="2.2" stroke-linecap="round"><path d="M17 8v3M8.5 11.5l2 2M25.5 11.5l-2 2M4.5 19h2.5M27 19h2.5"/></g><circle cx="17" cy="29" r="2" fill="#B71C1C"/></svg><span><span data-only="en">Panchang</span><span data-only="hi">पंचांग</span></span></a>
+  <nav class="nav" id="nav" aria-label="Main"><a href="./"><span data-only="en">Today</span><span data-only="hi">आज का पंचांग</span></a><a href="calendar.html"><span data-only="en">Calendar</span><span data-only="hi">कैलेंडर</span></a><a href="festivals.html"><span data-only="en">Festivals</span><span data-only="hi">त्योहार</span></a></nav>
+  <button class="tbtn nav-tog" id="nav-btn" aria-controls="nav" aria-expanded="false" aria-label="Menu">&#9776;</button>
+  <button class="tbtn" id="lang-btn" type="button">हिं</button>
+  <button class="tbtn" id="theme-btn" type="button" aria-label="Dark or light theme">&#9681;</button>
+</div></header>
+
+<main id="main" class="wrap"><section class="sec" style="max-width:48rem;padding-top:24px">
+<h1><span data-only="en">How the panchang is calculated</span><span data-only="hi">पंचांग की गणना कैसे होती है</span></h1>
+<p><span data-only="en">The Sun and Moon positions come from astronomy-engine, an open-source library that is accurate to well under a minute of arc. Every change of tithi, nakshatra, yoga, karana and sankranti from 2025 to 2030 was worked out once and is stored in a small file, so the site also works offline.</span><span data-only="hi">सूर्य और चंद्रमा की स्थिति astronomy-engine से ली गई है, जो एक ओपन-सोर्स लाइब्रेरी है और बहुत सटीक है। 2025 से 2030 तक तिथि, नक्षत्र, योग, करण और संक्रांति का हर बदलाव एक बार निकालकर छोटी फ़ाइल में रखा गया है, इसलिए साइट ऑफ़लाइन भी चलती है।</span></p><p><span data-only="en">Nakshatra, yoga and the signs use the Lahiri (Chitrapaksha) ayanamsa, the one the Government of India&#x27;s calendar uses. Sankranti moments were checked against published 2026 times and match to the minute.</span><span data-only="hi">नक्षत्र, योग और राशियाँ लाहिड़ी (चित्रपक्ष) अयनांश से हैं, जिसे भारत सरकार का कैलेंडर इस्तेमाल करता है। संक्रांति के समय 2026 के प्रकाशित समय से मिलाए गए और मिनट तक सही हैं।</span></p><p><span data-only="en">Sunrise and sunset are worked out for the chosen city. The tithi of a day is the one current at sunrise. Rahu Kaal, Yamaganda and Gulika are eighths of the daytime, by weekday. Abhijit Muhurat is the middle fifteenth of the day.</span><span data-only="hi">सूर्योदय और सूर्यास्त चुने गए शहर के लिए निकाले जाते हैं। दिन की तिथि वह है जो सूर्योदय पर चल रही हो। राहु काल, यमगण्ड और गुलिक दिन के आठवें भाग हैं, वार के अनुसार। अभिजित मुहूर्त दिन का बीच का पंद्रहवाँ भाग है।</span></p><p><span data-only="en">Months are Amanta (new moon to new moon) and named by the Sun&#x27;s sign at the new moon; a month with no sankranti is Adhik. Festivals use the time of day each one needs: Diwali in the evening (pradosh), Janmashtami and Maha Shivratri at midnight (nishita), Ganesh Chaturthi at midday, Dussehra in the afternoon. The 2026 and 2027 dates were checked against published calendars.</span><span data-only="hi">महीने अमांत हैं (अमावस्या से अमावस्या) और अमावस्या पर सूर्य की राशि से नाम पाते हैं; जिस महीने में संक्रांति न हो वह अधिक मास है। हर त्योहार उसी समय से तय होता है जो उसे चाहिए: दीपावली प्रदोष में, जन्माष्टमी और महाशिवरात्रि निशीथ में, गणेश चतुर्थी मध्याह्न में, दशहरा अपराह्न में। 2026 और 2027 की तारीखें प्रकाशित कैलेंडरों से मिलाई गईं।</span></p>
+</section></main>
+<footer class="foot"><div class="wrap">
+  <span>&copy; <span id="year-now">2026</span> <span data-only="en">Panchang. A free tool by</span><span data-only="hi">पंचांग। एक मुफ़्त टूल,</span> <a href="https://priya4042.github.io/">Priya Tech Labs</a>. <a href="privacy.html"><span data-only="en">Privacy</span><span data-only="hi">प्राइवेसी</span></a></span>
+  <nav aria-label="Footer"><a href="./"><span data-only="en">Today</span><span data-only="hi">आज</span></a><a href="calendar.html"><span data-only="en">Calendar</span><span data-only="hi">कैलेंडर</span></a><a href="festivals.html"><span data-only="en">Festivals</span><span data-only="hi">त्योहार</span></a><a href="about.html"><span data-only="en">How it is calculated</span><span data-only="hi">गणना कैसे होती है</span></a></nav>
+  <span><span data-only="en">Lahiri ayanamsa. Times for the chosen city. Local traditions can differ by a day.</span><span data-only="hi">लाहिड़ी अयनांश। समय चुने गए शहर के अनुसार। स्थानीय परंपरा में एक दिन का अंतर हो सकता है।</span></span>
+</div></footer>
+<script src="assets/cities.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

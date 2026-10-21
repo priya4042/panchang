@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Today&#x27;s Panchang - Tithi, Nakshatra, Rahu Kaal, Muhurat</title>
+<meta name="description" content="Today&#x27;s Hindu panchang for your city: tithi, nakshatra, yoga, karana, sunrise, sunset, Rahu Kaal, Abhijit muhurat and upcoming festivals. In English and Hindi.">
+<link rel="canonical" href="https://priya4042.github.io/panchang/">
+<meta property="og:title" content="Today&#x27;s Panchang - Tithi, Nakshatra, Rahu Kaal, Muhurat">
+<meta property="og:description" content="Today&#x27;s Hindu panchang for your city: tithi, nakshatra, yoga, karana, sunrise, sunset, Rahu Kaal, Abhijit muhurat and upcoming festivals. In English and Hindi.">
+<meta property="og:image" content="https://priya4042.github.io/panchang/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#B71C1C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/panchang.css">
+<link rel="preload" href="assets/events.json" as="fetch" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Panchang", "url": "https://priya4042.github.io/panchang/", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any", "inLanguage": ["en-IN", "hi-IN"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}}</script>
+</head>
+<body data-page="today">
+<a class="skip" href="#main"><span data-only="en">Skip to content</span><span data-only="hi">सामग्री पर जाएँ</span></a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M3 24h28" stroke="#B71C1C" stroke-width="2.4" stroke-linecap="round"/><path d="M8 24a9 9 0 0 1 18 0z" fill="#E8A317"/><g stroke="#E8A317" stroke-width="2.2" stroke-linecap="round"><path d="M17 8v3M8.5 11.5l2 2M25.5 11.5l-2 2M4.5 19h2.5M27 19h2.5"/></g><circle cx="17" cy="29" r="2" fill="#B71C1C"/></svg><span><span data-only="en">Panchang</span><span data-only="hi">पंचांग</span></span></a>
+  <nav class="nav" id="nav" aria-label="Main"><a href="./" aria-current="page"><span data-only="en">Today</span><span data-only="hi">आज का पंचांग</span></a><a href="calendar.html"><span data-only="en">Calendar</span><span data-only="hi">कैलेंडर</span></a><a href="festivals.html"><span data-only="en">Festivals</span><span data-only="hi">त्योहार</span></a></nav>
+  <button class="tbtn nav-tog" id="nav-btn" aria-controls="nav" aria-expanded="false" aria-label="Menu">&#9776;</button>
+  <button class="tbtn" id="lang-btn" type="button">हिं</button>
+  <button class="tbtn" id="theme-btn" type="button" aria-label="Dark or light theme">&#9681;</button>
+</div></header>
+
+<main id="main" class="wrap">
+  <div class="bar">
+    <div class="fld"><label for="city"><span data-only="en">City</span><span data-only="hi">शहर</span></label><select id="city"></select></div>
+    <button class="btn" id="gps" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg><span data-only="en">Use my location</span><span data-only="hi">मेरी जगह</span></button>
+    <div class="fld"><label for="date"><span data-only="en">Date</span><span data-only="hi">तारीख</span></label><input type="date" id="date" min="2025-01-01" max="2030-12-31"></div><button class="btn" id="prev" type="button" aria-label="Previous">&#8592;</button><button class="btn" id="today-btn" type="button"><span data-only="en">Today</span><span data-only="hi">आज</span></button><button class="btn" id="next" type="button" aria-label="Next">&#8594;</button>
+  </div>
+  <div id="out" aria-live="polite"><p class="note"><span data-only="en">Working out the panchang...</span><span data-only="hi">पंचांग बन रहा है...</span></p></div>
+  <section class="sec"><h2><span data-only="en">Questions</span><span data-only="hi">सवाल</span></h2><div class="faq"><details><summary><span data-only="en">What is a Panchang?</span><span data-only="hi">पंचांग क्या है?</span></summary><p><span data-only="en">A Hindu almanac of five parts for each day: tithi (lunar day), nakshatra (the Moon&#x27;s star), yoga, karana (half tithi) and vaar (weekday). Festivals, fasts and muhurat are chosen from it.</span><span data-only="hi">हर दिन के पाँच अंगों वाला हिंदू कैलेंडर: तिथि, नक्षत्र, योग, करण और वार। त्योहार, व्रत और मुहूर्त इसी से तय होते हैं।</span></p></details><details><summary><span data-only="en">Why does the tithi change in the middle of the day?</span><span data-only="hi">तिथि दिन के बीच में क्यों बदलती है?</span></summary><p><span data-only="en">A tithi is the time the Moon takes to move 12 degrees ahead of the Sun, so it can end at any hour. The tithi at sunrise is the one the day is named after.</span><span data-only="hi">तिथि वह समय है जिसमें चंद्रमा सूर्य से 12 अंश आगे बढ़ता है, इसलिए यह किसी भी समय खत्म हो सकती है। दिन का नाम सूर्योदय की तिथि से होता है।</span></p></details><details><summary><span data-only="en">What is Rahu Kaal?</span><span data-only="hi">राहु काल क्या है?</span></summary><p><span data-only="en">About an hour and a half each day, one eighth of the time between sunrise and sunset, that many people avoid for starting new work. Its place changes with the weekday.</span><span data-only="hi">हर दिन लगभग डेढ़ घंटे का समय, सूर्योदय से सूर्यास्त के बीच का आठवाँ भाग, जिसमें कई लोग नया काम शुरू नहीं करते। यह वार के अनुसार बदलता है।</span></p></details></div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <span>&copy; <span id="year-now">2026</span> <span data-only="en">Panchang. A free tool by</span><span data-only="hi">पंचांग। एक मुफ़्त टूल,</span> <a href="https://priya4042.github.io/">Priya Tech Labs</a>. <a href="privacy.html"><span data-only="en">Privacy</span><span data-only="hi">प्राइवेसी</span></a></span>
+  <nav aria-label="Footer"><a href="./"><span data-only="en">Today</span><span data-only="hi">आज</span></a><a href="calendar.html"><span data-only="en">Calendar</span><span data-only="hi">कैलेंडर</span></a><a href="festivals.html"><span data-only="en">Festivals</span><span data-only="hi">त्योहार</span></a><a href="about.html"><span data-only="en">How it is calculated</span><span data-only="hi">गणना कैसे होती है</span></a></nav>
+  <span><span data-only="en">Lahiri ayanamsa. Times for the chosen city. Local traditions can differ by a day.</span><span data-only="hi">लाहिड़ी अयनांश। समय चुने गए शहर के अनुसार। स्थानीय परंपरा में एक दिन का अंतर हो सकता है।</span></span>
+</div></footer>
+<script src="assets/cities.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
