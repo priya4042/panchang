@@ -52,7 +52,7 @@ def header(cur):
 '''
 
 def footer():
-    return f'''<footer class="foot"><div class="wrap">
+    return f'''<aside class="get-app" aria-label="Android app"><div class="wrap"><img src="https://priya4042.github.io/assets/apps/panchang.png" alt="" width="52" height="52" loading="lazy"><p><b>{bi("Get the Panchang app", "Panchang ऐप पाएँ")}</b><span>{bi("Works offline, with reminders and more. Free for Android.", "ऑफ़लाइन चलता है, रिमाइंडर और भी बहुत कुछ। Android के लिए मुफ़्त।")}</span></p><a class="get-btn" href="https://github.com/priya4042/priya4042.github.io/releases/download/apps/panchang-1.0.0-arm64.apk" download>{bi("Download for Android", "Android के लिए डाउनलोड")} <small>APK, 32 MB</small></a><span class="get-more"><a href="https://github.com/priya4042/priya4042.github.io/releases/download/apps/panchang-1.0.0-old-phones.apk" download>{bi("Older phone?", "पुराना फ़ोन?")}</a> &middot; <a href="https://priya4042.github.io/download.html#how">{bi("How to install", "इंस्टॉल कैसे करें")}</a></span></div></aside><footer class="foot"><div class="wrap">
   <span>&copy; <span id="year-now">2026</span> {bi("Panchang. A free tool by", "पंचांग। एक मुफ़्त टूल,")} <a href="https://priya4042.github.io/">Priya Tech Labs</a>. <a href="privacy.html">{bi("Privacy", "प्राइवेसी")}</a></span>
   <nav aria-label="Footer"><a href="./">{bi("Today", "आज")}</a><a href="calendar.html">{bi("Calendar", "कैलेंडर")}</a><a href="festivals.html">{bi("Festivals", "त्योहार")}</a><a href="rashi.html">{bi("Birth rashi", "जन्म राशि")}</a><a href="about.html">{bi("How it is calculated", "गणना कैसे होती है")}</a></nav>
   <span>{bi("Lahiri ayanamsa. Times for the chosen city. Local traditions can differ by a day.", "लाहिड़ी अयनांश। समय चुने गए शहर के अनुसार। स्थानीय परंपरा में एक दिन का अंतर हो सकता है।")}</span>
@@ -60,6 +60,7 @@ def footer():
 <script src="assets/cities.js"></script>
 <script src="assets/engine.js"></script>
 <script src="assets/moon.js"></script>
+<script src="assets/regional.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
@@ -88,7 +89,7 @@ def today():
     body = f'''<body data-page="today">
 {header("./")}
 <main id="main" class="wrap">
-  {place_bar(f'<div class="fld"><label for="date">{bi("Date", "तारीख")}</label><input type="date" id="date" min="2025-01-01" max="2030-12-31"></div>{ARROWS[0]}<button class="btn" id="today-btn" type="button">{bi("Today", "आज")}</button>{ARROWS[1]}')}
+  {place_bar(f'<div class="fld"><label for="date">{bi("Date", "तारीख")}</label><input type="date" id="date" min="2025-01-01" max="2030-12-31"></div>{ARROWS[0]}<button class="btn" id="today-btn" type="button">{bi("Today", "आज")}</button>{ARROWS[1]}<div class="fld"><label for="regional">{bi("Regional calendar", "क्षेत्रीय कैलेंडर")}</label><select id="regional"></select></div>')}
   <div id="out" aria-live="polite"><p class="note">{bi("Working out the panchang...", "पंचांग बन रहा है...")}</p></div>
   <section class="sec"><h2>{bi("Questions", "सवाल")}</h2><div class="faq">{faqs}</div></section>
 </main>
@@ -260,9 +261,9 @@ if __name__ == "__main__":
     write("manifest.webmanifest", json.dumps({"name": "Panchang - Tithi, Muhurat and Festivals", "short_name": "Panchang", "start_url": "./", "scope": "./", "display": "standalone",
         "background_color": "#FFFFFF", "theme_color": "#B71C1C", "lang": "en-IN", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
         {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"}, {"src": "assets/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, indent=2))
-    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/moon.js", "assets/cities.js", "muhurat.html", "rashi.html", "assets/events.json", "assets/icon.svg"]
+    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/moon.js", "assets/cities.js", "assets/regional.js", "muhurat.html", "rashi.html", "assets/events.json", "assets/icon.svg"]
     write("sw.js", '''// Network first so updates show at once; cached copy when offline.
-var CACHE = "panchang-v3";
+var CACHE = "panchang-v5";
 var CORE = ''' + json.dumps(core) + ''';
 self.addEventListener("install", function (e) { e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener("activate", function (e) {

@@ -104,6 +104,7 @@
     var fest = PE.festivals([y, m, d], [y, m, d], p), vr = PE.vrats([y, m, d], [y, m, d], p);
     var chips = fest.map(function (f) { return '<span class="chip red">' + esc(hi() ? f.hi : f.en) + "</span>"; }).concat(vr.map(function (v) { return '<span class="chip">' + esc(hi() ? v.hi : v.en) + "</span>"; }));
     var sk = PE.sankrantis(day.sun.rise - DAY / 2, day.sun.rise + DAY / 2);
+    var rg = window.PR ? PR.day(store("pc-regional") || "none", y, m, d, p) : null;
     sk.forEach(function (s) { chips.push('<span class="chip">' + esc(nm(PE.RASHI, PE.RASHI_HI, s.rashi) + t(" Sankranti ", " संक्रांति ") + hm(s.t, p)) + "</span>"); });
 
     function limb(k, list, names, extra) {
@@ -119,6 +120,7 @@
       '<div class="date-sub">' + esc((hi() ? PE.VAAR_HI : WD)[wd] + ", " + placeName(p)) + "</div>" +
       '<div class="tithi-big">' + moonSvg(ti.v, 34).replace('class="moon"', 'style="vertical-align:-6px;margin-right:8px"') + esc(tithiName(ti.v)) +
       "<small>" + esc(mon + t(" month, ", " मास, ") + t("Vikram Samvat ", "विक्रम संवत ") + day.vikram + ", " + t("Shaka ", "शक ") + day.shaka) + "</small></div>" +
+      (rg ? '<div class="regional"><b>' + esc((hi() ? PR.HI : PR.EN)[rg.cal]) + ":</b> " + esc(PR.label(rg, hi())) + "</div>" : "") +
       (chips.length ? '<div class="fest-today">' + chips.join("") + "</div>" : "") +
       '</div><div class="arc-wrap">' + arcSvg(day, p, isToday) +
       '<div class="arc-legend"><span style="--c:var(--kumkum)">' + t("Rahu Kaal", "राहु काल") + '</span><span style="--c:var(--good)">' + t("Abhijit", "अभिजित") +
@@ -290,7 +292,12 @@
   /* ---------- shared controls ---------- */
   function fillCities(sel) {
     var p = place();
-    sel.innerHTML = CITIES.map(function (c, i) { return '<option value="' + i + '">' + esc(hi() ? c[1] : c[0]) + "</option>"; }).join("") +
+    var html = "", grp = null;
+    CITIES.forEach(function (c, i) {
+      if (c[4] !== grp) { html += (grp === null ? "" : "</optgroup>") + '<optgroup label="' + esc(hi() ? c[5] : c[4]) + '">'; grp = c[4]; }
+      html += '<option value="' + i + '">' + esc(hi() ? c[1] : c[0]) + "</option>";
+    });
+    sel.innerHTML = html + "</optgroup>" +
       (p.custom ? '<option value="here" selected>' + esc(t("My location", "मेरी जगह")) + "</option>" : "");
     if (!p.custom) { var i = CITIES.findIndex(function (c) { return c[0] === p.name; }); sel.value = i < 0 ? 0 : i; }
   }
@@ -318,13 +325,20 @@
       return;
     }
     render = page === "today" ? renderToday : page === "calendar" ? renderCalendar : page === "muhurat" ? renderMuhurat : page === "fest" ? renderFest : renderFestivals;
-    var city = $("#city");
+    var city = $("#city"), reg = $("#regional");
+    function fillRegional() {
+      if (!reg || !window.PR) return;
+      reg.innerHTML = PR.IDS.map(function (id) { return '<option value="' + id + '">' + esc((hi() ? PR.HI : PR.EN)[id]) + "</option>"; }).join("");
+      reg.value = PR.IDS.indexOf(store("pc-regional")) < 0 ? "none" : store("pc-regional");
+    }
+    fillRegional();
+    if (reg) reg.addEventListener("change", function () { store("pc-regional", reg.value); render(); });
     fetch("assets/events.json").then(function (r) { return r.json(); }).then(function (j) {
       PE.load(j);
       fillCities(city);
       render();
     }).catch(function () { $("#out, #cal, #fl") && ($("#out") || $("#cal") || $("#fl")).insertAdjacentHTML("beforebegin", '<p class="note">' + t("Could not load the calendar data. Check your connection and reload.", "कैलेंडर डेटा लोड नहीं हुआ। इंटरनेट जाँचकर पेज दोबारा खोलें।") + "</p>"); });
-    if (lb) lb.addEventListener("click", function () { root.lang = hi() ? "en" : "hi"; store("pc-lang", root.lang); paint(); fillCities(city); render(); });
+    if (lb) lb.addEventListener("click", function () { root.lang = hi() ? "en" : "hi"; store("pc-lang", root.lang); paint(); fillCities(city); fillRegional(); render(); });
     city.addEventListener("change", function () {
       if (city.value === "here") return;
       var c = CITIES[+city.value]; setPlace({ name: c[0], hi: c[1], lat: c[2], lon: c[3], tz: 5.5 }); render();
