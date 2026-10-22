@@ -38,7 +38,7 @@ def head(title, desc, path, extra=""):
 '''
 
 def header(cur):
-    links = [("./", "Today", "आज का पंचांग"), ("calendar.html", "Calendar", "कैलेंडर"), ("festivals.html", "Festivals", "त्योहार")]
+    links = [("./", "Today", "आज का पंचांग"), ("calendar.html", "Calendar", "कैलेंडर"), ("festivals.html", "Festivals", "त्योहार"), ("muhurat.html", "Muhurat", "मुहूर्त")]
     here = ' aria-current="page"'
     nav = "".join(f'<a href="{h}"{here if h == cur else ""}>{bi(e, i)}</a>' for h, e, i in links)
     return f'''<a class="skip" href="#main">{bi("Skip to content", "सामग्री पर जाएँ")}</a>
@@ -59,6 +59,7 @@ def footer():
 </div></footer>
 <script src="assets/cities.js"></script>
 <script src="assets/engine.js"></script>
+<script src="assets/moon.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
@@ -125,6 +126,21 @@ def festivals():
 '''
     return head("Hindu Festivals, Ekadashi and Vrat Dates 2025 to 2030 - Panchang", "Every Hindu festival, Ekadashi, Purnima, Amavasya, Pradosh, Sankashti and Sankranti date for 2025 to 2030, worked out for your city.", "festivals.html") + body + footer()
 
+def muhurat():
+    kinds = [("vivah", "Marriage", "विवाह"), ("griha", "Griha pravesh", "गृह प्रवेश"), ("vehicle", "Vehicle", "वाहन"), ("property", "Property", "संपत्ति"), ("namkaran", "Naming", "नामकरण")]
+    tb = "".join(f'<button type="button" data-kind="{k}" aria-pressed="{str(k == "vivah").lower()}">{bi(e, h)}</button>' for k, e, h in kinds)
+    body = f'''<body data-page="muhurat">
+{header("muhurat.html")}
+<main id="main" class="wrap">
+  {place_bar("")}
+  <h1 id="mu-title" style="margin-top:12px"></h1>
+  <div class="tabs" role="group" aria-label="Kind">{tb}</div>
+  <ul class="fl" id="mu" aria-live="polite"></ul>
+  <p class="note" style="margin-top:14px">{bi("These days pass the basic panchang checks used for this kind of work: a suitable nakshatra, tithi and weekday, and no Adhik maas, Kharmas, Amavasya or Rikta tithi (and no Chaturmas for marriage). They do not look at Jupiter or Venus being combust or at anyone's birth chart, so confirm the final muhurat with your family priest.", "ये दिन इस काम के लिए पंचांग की बुनियादी जाँचों में सही हैं: उपयुक्त नक्षत्र, तिथि और वार, और अधिक मास, खरमास, अमावस्या या रिक्ता तिथि नहीं (विवाह के लिए चातुर्मास भी नहीं)। इनमें गुरु या शुक्र के अस्त होने और किसी की जन्म कुंडली को नहीं देखा गया है, इसलिए अंतिम मुहूर्त अपने पुरोहित से पक्का करें।")}</p>
+</main>
+'''
+    return head("Shubh Muhurat Dates - Marriage, Griha Pravesh, Vehicle - Panchang", "Good days in the next twelve months for marriage, griha pravesh, vehicle and property purchase and naming, from basic panchang rules, for your city.", "muhurat.html") + body + footer()
+
 def about():
     paras = [("The Sun and Moon positions come from astronomy-engine, an open-source library that is accurate to well under a minute of arc. Every change of tithi, nakshatra, yoga, karana and sankranti from 2025 to 2030 was worked out once and is stored in a small file, so the site also works offline.",
               "सूर्य और चंद्रमा की स्थिति astronomy-engine से ली गई है, जो एक ओपन-सोर्स लाइब्रेरी है और बहुत सटीक है। 2025 से 2030 तक तिथि, नक्षत्र, योग, करण और संक्रांति का हर बदलाव एक बार निकालकर छोटी फ़ाइल में रखा गया है, इसलिए साइट ऑफ़लाइन भी चलती है।"),
@@ -159,17 +175,17 @@ def write(name, s):
     open(os.path.join(R, name), "w", encoding="utf-8", newline="\n").write(s); print("built", name)
 
 if __name__ == "__main__":
-    write("index.html", today()); write("calendar.html", calendar()); write("festivals.html", festivals()); write("about.html", about()); write("privacy.html", privacy())
+    write("index.html", today()); write("calendar.html", calendar()); write("festivals.html", festivals()); write("muhurat.html", muhurat()); write("about.html", about()); write("privacy.html", privacy())
     open(os.path.join(R, "assets", "icon.svg"), "w", encoding="utf-8").write(LOGO.replace('<svg viewBox', '<svg xmlns="http://www.w3.org/2000/svg" viewBox').replace(' aria-hidden="true"', ''))
-    urls = ["", "calendar.html", "festivals.html", "about.html", "privacy.html"]
+    urls = ["", "calendar.html", "festivals.html", "muhurat.html", "about.html", "privacy.html"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n")
     write("manifest.webmanifest", json.dumps({"name": "Panchang - Tithi, Muhurat and Festivals", "short_name": "Panchang", "start_url": "./", "scope": "./", "display": "standalone",
         "background_color": "#FFFFFF", "theme_color": "#B71C1C", "lang": "en-IN", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
         {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"}, {"src": "assets/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, indent=2))
-    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/cities.js", "assets/events.json", "assets/icon.svg"]
+    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/moon.js", "assets/cities.js", "muhurat.html", "assets/events.json", "assets/icon.svg"]
     write("sw.js", '''// Network first so updates show at once; cached copy when offline.
-var CACHE = "panchang-v1";
+var CACHE = "panchang-v2";
 var CORE = ''' + json.dumps(core) + ''';
 self.addEventListener("install", function (e) { e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener("activate", function (e) {

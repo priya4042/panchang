@@ -132,6 +132,7 @@
       "</div>" +
       '<div class="two"><div class="box"><h2>' + t("Sun, moon and muhurat", "सूर्य, चंद्र और मुहूर्त") + '</h2><dl class="rows">' +
       row(t("Sunrise", "सूर्योदय"), hm(day.sun.rise, p)) + row(t("Sunset", "सूर्यास्त"), hm(day.sun.set, p)) +
+      (function () { var mr = PE.moonRiseSet(y, m, d, p); return row(t("Moonrise", "चंद्रोदय"), mr.rise ? hm(mr.rise, p) : t("None today", "आज नहीं")) + row(t("Moonset", "चंद्रास्त"), mr.set ? hm(mr.set, p) : t("None today", "आज नहीं")); })() +
       (mu ? row(t("Rahu Kaal", "राहु काल"), hm(mu.rahu[0], p) + " - " + hm(mu.rahu[1], p), "bad") +
         row(t("Yamaganda", "यमगण्ड"), hm(mu.yama[0], p) + " - " + hm(mu.yama[1], p)) +
         row(t("Gulika Kaal", "गुलिक काल"), hm(mu.gulika[0], p) + " - " + hm(mu.gulika[1], p)) +
@@ -142,7 +143,8 @@
       row(t("Month (Amanta)", "मास (अमांत)"), monthName(day.month.amanta) + (day.month.adhik ? t(" (Adhik)", " (अधिक)") : "")) +
       row(t("Paksha", "पक्ष"), ti.v < 15 ? t("Shukla (waxing)", "शुक्ल") : t("Krishna (waning)", "कृष्ण")) +
       "</dl></div>" +
-      '<div class="box"><h2>' + t("Coming up", "आने वाले पर्व और व्रत") + '</h2><ul class="up" id="up"></ul><p class="note" style="margin-top:10px"><a href="festivals.html">' + t("All festivals of the year", "साल के सभी त्योहार") + "</a></p></div></div>";
+      '<div class="box"><h2>' + t("Coming up", "आने वाले पर्व और व्रत") + '</h2><ul class="up" id="up"></ul><p class="note" style="margin-top:10px"><a href="festivals.html">' + t("All festivals of the year", "साल के सभी त्योहार") + "</a></p></div></div>" +
+      '<div class="two" style="margin-top:22px">' + periodsBox(t("Choghadiya", "चौघड़िया"), PE.choghadiya(day.sun, wd), p, y, m, d, true) + periodsBox(t("Hora", "होरा"), PE.hora(day.sun, wd), p, y, m, d, false) + "</div>";
     $("#out").innerHTML = html;
     // next 45 days
     var s0 = new Date(Date.UTC(y, m - 1, d) + DAY), e0 = new Date(Date.UTC(y, m - 1, d) + 45 * DAY);
@@ -157,6 +159,17 @@
       return '<li><time>' + it.date[2] + " " + (hi() ? MON_HI : MON)[it.date[1] - 1] + "</time><span>" + (it.big ? "<b>" + esc(it.txt) + "</b>" : esc(it.txt)) + " <small>" + (hi() ? WD_S_HI : WD_S)[wd2] + "</small></span></li>";
     }).join("") || '<li class="note">' + t("Nothing in the next six weeks.", "अगले छह हफ़्तों में कुछ नहीं।") + "</li>";
     document.title = t("Panchang for ", "पंचांग ") + dateText(y, m, d) + " - " + placeName(p);
+  }
+  // a list of day and night periods (Choghadiya or Hora), the current one marked
+  function periodsBox(title, list, p, y, m, d, tone) {
+    var now = Date.now();
+    function li(it) {
+      var cur = now >= it.start && now < it.end, kind = tone ? PE.CH_GOOD[it.name] : "";
+      var cls = kind === "bad" ? "bad" : kind === "best" || kind === "good" ? "good" : "";
+      return '<div class="' + cls + '"' + (cur ? ' style="background:var(--haldi-soft)"' : "") + "><dt>" + esc(hi() ? it.hi : it.name) + (cur ? " \u2022 " + t("now", "अभी") : "") + "</dt><dd>" + hm(it.start, p) + " - " + when(it.end, p, y, m, d) + "</dd></div>";
+    }
+    return '<div class="box"><h2>' + title + '</h2><dl class="rows"><div><dt><b>' + t("Day", "दिन") + "</b></dt><dd></dd></div>" + list.filter(function (x) { return !x.night; }).map(li).join("") +
+      "<div><dt><b>" + t("Night", "रात") + "</b></dt><dd></dd></div>" + list.filter(function (x) { return x.night; }).map(li).join("") + "</dl></div>";
   }
   function row(k, v, cls) { return '<div class="' + (cls || "") + '"><dt>' + esc(k) + "</dt><dd>" + esc(v) + "</dd></div>"; }
 
@@ -209,6 +222,22 @@
     document.querySelectorAll(".tabs button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.tab === tab); });
   }
 
+  /* ---------- page: muhurat ---------- */
+  var mkind = "vivah";
+  function renderMuhurat() {
+    var p = place(), td = todayLocal(p), end = new Date(Date.UTC(td[0], td[1] - 1, td[2]) + 365 * DAY);
+    var to = [end.getUTCFullYear(), end.getUTCMonth() + 1, end.getUTCDate()];
+    if (to[0] > 2030) to = [2030, 12, 31];
+    var list = PE.muhuratDays(mkind, td, to, p), rule = PE.MUHURAT[mkind];
+    $("#mu-title").textContent = t("Good days for ", "शुभ दिन: ") + (hi() ? rule.hi : rule.en.toLowerCase());
+    $("#mu").innerHTML = list.map(function (it) {
+      var wd = new Date(Date.UTC(it.date[0], it.date[1] - 1, it.date[2])).getUTCDay();
+      return '<li><time><a href="./?date=' + iso(it.date[0], it.date[1], it.date[2]) + '">' + it.date[2] + " " + (hi() ? MON_HI : MON)[it.date[1] - 1] + " " + it.date[0] + '</a><span class="wd">' + (hi() ? PE.VAAR_HI : WD)[wd] + "</span></time><b>" +
+        esc(tithiName(it.tithi) + ", " + nm(PE.NAK, PE.NAK_HI, it.nak)) + "</b></li>";
+    }).join("") || '<li class="note">' + t("No days in the next twelve months pass these checks.", "अगले बारह महीनों में कोई दिन इन जाँचों में नहीं आता।") + "</li>";
+    document.querySelectorAll(".tabs button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.kind === mkind); });
+  }
+
   /* ---------- shared controls ---------- */
   function fillCities(sel) {
     var p = place();
@@ -233,7 +262,7 @@
 
     var page = document.body.dataset.page;
     if (!page || page === "info") { if (lb) lb.addEventListener("click", function () { root.lang = hi() ? "en" : "hi"; store("pc-lang", root.lang); paint(); }); return; }
-    render = page === "today" ? renderToday : page === "calendar" ? renderCalendar : renderFestivals;
+    render = page === "today" ? renderToday : page === "calendar" ? renderCalendar : page === "muhurat" ? renderMuhurat : renderFestivals;
     var city = $("#city");
     fetch("assets/events.json").then(function (r) { return r.json(); }).then(function (j) {
       PE.load(j);
@@ -266,7 +295,7 @@
     if (next) next.addEventListener("click", function () { shift(1); });
     var mo = $("#month"); if (mo) mo.addEventListener("change", function () { history.replaceState(null, "", "?month=" + mo.value); render(); });
     var yr = $("#year"); if (yr) yr.addEventListener("change", function () { history.replaceState(null, "", "?year=" + yr.value); render(); });
-    document.querySelectorAll(".tabs button").forEach(function (b) { b.addEventListener("click", function () { tab = b.dataset.tab; render(); }); });
+    document.querySelectorAll(".tabs button").forEach(function (b) { b.addEventListener("click", function () { if (b.dataset.kind) mkind = b.dataset.kind; else tab = b.dataset.tab; render(); }); });
     var td = $("#today-btn"); if (td) td.addEventListener("click", function () { history.replaceState(null, "", location.pathname); render(); });
   });
 })();

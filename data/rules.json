@@ -1,0 +1,7 @@
+{
+ "updated": "2026-10-22",
+ "note": "Festival dates fixed by hand, as id:year -> YYYY-MM-DD. Bump 'updated' after a change.",
+ "festivals": {
+  "holi:2026": "2026-03-04"
+ }
+}
