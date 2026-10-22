@@ -131,5 +131,35 @@
     return false;
   };
 
+  /* ---------- birth rashi and nakshatra ---------- */
+  /** Lahiri ayanamsa (deg) at UTC ms: the formula, with its +35" calibration, that built events.json. */
+  PE.ayanamsa = function (ms) {
+    var T = (ms / DAY + 2440587.5 + 69 / 86400 - 2451545) / 36525;
+    return 23.86275 + (5028.796195 * T + 1.1054348 * T * T) / 3600;
+  };
+  /** Apparent tropical longitude of the Sun (deg), the NOAA formulas used for sunrise. */
+  PE.sunLon = function (ms) {
+    var jc = (ms / DAY + 2440587.5 - 2451545) / 36525;
+    var L0 = (280.46646 + jc * (36000.76983 + jc * 0.0003032)) % 360, M = 357.52911 + jc * (35999.05029 - 0.0001537 * jc);
+    var C = s(M) * (1.914602 - jc * (0.004817 + 0.000014 * jc)) + s(2 * M) * (0.019993 - 0.000101 * jc) + s(3 * M) * 0.000289;
+    return norm(L0 + C - 0.00569 - 0.00478 * s(125.04 - 1934.136 * jc));
+  };
+  /** Sidereal Moon and Sun at a moment of birth, with rashi, nakshatra and pada. */
+  PE.birthSigns = function (ms) {
+    var ay = PE.ayanamsa(ms), moon = norm(PE.moonPos(ms).lon - ay), sun = norm(PE.sunLon(ms) - ay);
+    function gap(lon, size) { var x = lon % size; return Math.min(x, size - x); }
+    return {
+      moon: moon, sun: sun, moonRashi: Math.floor(moon / 30), sunRashi: Math.floor(sun / 30), nak: Math.floor(moon * 27 / 360), pada: Math.floor(moon * 108 / 360) % 4 + 1,
+      near: { moonRashi: gap(moon, 30) < 0.3, nak: gap(moon, 360 / 27) < 0.3, pada: gap(moon, 360 / 108) < 0.3, sunRashi: gap(sun, 30) < 0.3 }
+    };
+  };
+  /** Indian clock offset (hours) on a date, as in the Asia/Kolkata time zone: Madras time before 1906 and war time 1941-42 and 1942-45. */
+  PE.indiaOffset = function (y, m, d) {
+    var t = Date.UTC(y, m - 1, d);
+    if (t < Date.UTC(1906, 0, 1)) return 5 + 21 / 60 + 10 / 3600;
+    if ((t >= Date.UTC(1941, 9, 1) && t < Date.UTC(1942, 4, 15)) || (t >= Date.UTC(1942, 8, 1) && t < Date.UTC(1945, 9, 15))) return 6.5;
+    return 5.5;
+  };
+
   if (typeof module !== "undefined" && module.exports) module.exports = PE;
 })(typeof window !== "undefined" ? window : this);

@@ -181,8 +181,8 @@
   }
   function localDate(t, tz) { var d = new Date(t + tz * 3600000); return [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()]; }
 
-  /** Every festival day between two local dates (inclusive) at a place. */
-  PE.festivals = function (from, to, place) {
+  /** Every festival day between two local dates (inclusive) at a place; only limits it to one festival id. */
+  PE.festivals = function (from, to, place, only) {
     var out = [], seen = {}, months = {}, t0 = Date.UTC(from[0], from[1] - 1, from[2]), t1 = Date.UTC(to[0], to[1] - 1, to[2]);
     function add(f, y, mo, d) {
       var day = new Date(Date.UTC(y, mo - 1, d) + (f.plus || 0) * DAY), date = [day.getUTCFullYear(), day.getUTCMonth() + 1, day.getUTCDate()];
@@ -193,6 +193,7 @@
       var dt = new Date(t), y = dt.getUTCFullYear(), mo = dt.getUTCMonth() + 1, d = dt.getUTCDate(), sun = PE.sun(y, mo, d, place);
       if (!sun.rise || !PE.inRange(sun.rise) || !PE.inRange(sun.nextRise)) continue;
       PE.FEST.forEach(function (f) {
+        if (only && f.id !== only) return;
         var k = kaalTime(f.k, sun), ti = PE.at("tithi", k), m = PE.month(k);
         if (m.amanta === f.m && !m.adhik) months[f.id + ":" + m.start] = { f: f, m: m };
         if (ti.v + 1 !== f.t || m.amanta !== f.m || m.adhik) return;
@@ -250,9 +251,40 @@
         out.push({ id: f.id, en: f.en, hi: f.hi, date: [y, mo, d], paksha: ti.v < 15 ? "S" : "K" });
       });
     }
-    return out;
+    // a tithi that covers its time of day on neither day (kshaya) falls on the day it begins
+    var t0 = Date.UTC(from[0], from[1] - 1, from[2]), t1 = Date.UTC(to[0], to[1] - 1, to[2]);
+    var s0 = PE.sun(from[0], from[1], from[2], place), s1 = PE.sun(to[0], to[1], to[2], place);
+    if (s0.rise && s1.nextRise) {
+      for (var cur = PE.at("tithi", s0.rise); cur.end && cur.start < s1.nextRise; cur = PE.at("tithi", cur.end + 1)) {
+        var ld = localDate(cur.start, place.tz), lt = Date.UTC(ld[0], ld[1] - 1, ld[2]);
+        if (lt < t0 || lt > t1 || !PE.inRange(cur.end)) continue;
+        PE.VRAT.forEach(function (f) {
+          if (f.t.indexOf(cur.v + 1) < 0 || seen[f.id + cur.start]) return;
+          function covers(ms) {
+            var dd = new Date(ms), sn = PE.sun(dd.getUTCFullYear(), dd.getUTCMonth() + 1, dd.getUTCDate(), place);
+            if (!sn.rise || !sn.set || !sn.nextRise) return true;
+            var k = kaalTime(f.k, sn);
+            return k >= cur.start && k < cur.end;
+          }
+          if (covers(lt) || covers(lt + DAY)) return;
+          seen[f.id + cur.start] = true;
+          out.push({ id: f.id, en: f.en, hi: f.hi, date: ld, paksha: cur.v < 15 ? "S" : "K" });
+        });
+      }
+    }
+    return out.sort(function (a, b) { return Date.UTC(a.date[0], a.date[1] - 1, a.date[2]) - Date.UTC(b.date[0], b.date[1] - 1, b.date[2]); });
   };
   PE.localDate = localDate;
+
+  // Ekadashi names by amanta month, [Shukla, Krishna]; adhik months have Padmini and Parama
+  var EK = [["Kamada", "Varuthini"], ["Mohini", "Apara"], ["Nirjala", "Yogini"], ["Devshayani", "Kamika"], ["Shravana Putrada", "Aja"], ["Parivartini", "Indira"],
+    ["Papankusha", "Rama"], ["Dev Uthani (Prabodhini)", "Utpanna"], ["Mokshada", "Saphala"], ["Pausha Putrada", "Shattila"], ["Jaya", "Vijaya"], ["Amalaki", "Papmochani"]];
+  var EK_HI = [["कामदा", "वरूथिनी"], ["मोहिनी", "अपरा"], ["निर्जला", "योगिनी"], ["देवशयनी", "कामिका"], ["श्रावण पुत्रदा", "अजा"], ["परिवर्तिनी", "इंदिरा"],
+    ["पापांकुशा", "रमा"], ["देवउठनी (प्रबोधिनी)", "उत्पन्ना"], ["मोक्षदा", "सफला"], ["पौष पुत्रदा", "षटतिला"], ["जया", "विजया"], ["आमलकी", "पापमोचिनी"]];
+  PE.ekadashiName = function (mo, shukla, hi) {
+    if (mo.adhik) return hi ? (shukla ? "पद्मिनी (कमला)" : "परमा") : (shukla ? "Padmini (Kamala)" : "Parama");
+    return (hi ? EK_HI : EK)[mo.amanta][shukla ? 0 : 1];
+  };
 
   if (typeof module !== "undefined" && module.exports) module.exports = PE; else root.PE = PE;
 })(this);

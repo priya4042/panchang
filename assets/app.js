@@ -207,17 +207,18 @@
     $("#year").value = y;
     $("#fl-title").textContent = t("Hindu festivals " + y, "हिंदू त्योहार " + y);
     var list;
-    if (tab === "fest") list = PE.festivals([y, 1, 1], [y, 12, 31], p).map(function (f) { return { date: f.date, txt: hi() ? f.hi : f.en }; });
+    if (tab === "fest") list = PE.festivals([y, 1, 1], [y, 12, 31], p).map(function (f) { return { date: f.date, txt: hi() ? f.hi : f.en, id: f.id }; });
     else if (tab === "sankranti") list = PE.sankrantis(Date.UTC(y, 0, 1) - 5.5 * 3600000, Date.UTC(y + 1, 0, 1) - 5.5 * 3600000).map(function (s) {
       var x = ld(s.t, p.tz); return { date: [x[0], x[1], x[2]], txt: nm(PE.RASHI, PE.RASHI_HI, s.rashi) + t(" Sankranti, ", " संक्रांति, ") + hm(s.t, p) };
     });
     else list = PE.vrats([y, 1, 1], [y, 12, 31], p).filter(function (v) { return tab === "pa" ? (v.id === "purnima" || v.id === "amavasya") : v.id === tab; }).map(function (v) {
-      var mo = PE.month(PE.sun(v.date[0], v.date[1], v.date[2], p).rise);
-      return { date: v.date, txt: (hi() ? v.hi : v.en) + (v.id !== "purnima" && v.id !== "amavasya" ? (v.paksha === "S" ? t(", Shukla", ", शुक्ल") : t(", Krishna", ", कृष्ण")) : "") + ", " + nm(PE.MONTH, PE.MONTH_HI, PE.purnimanta(mo, v.paksha === "S" ? 0 : 20)) + (mo.adhik ? t(" (Adhik)", " (अधिक)") : "") };
+      var mo = PE.month(PE.sun(v.date[0], v.date[1], v.date[2], p).rise), name = (v.id === "ekadashi" ? PE.ekadashiName(mo, v.paksha === "S", hi()) + " " : "") + (hi() ? v.hi : v.en);
+      return { id: v.id, date: v.date, txt: name + (v.id !== "purnima" && v.id !== "amavasya" ? (v.paksha === "S" ? t(", Shukla", ", शुक्ल") : t(", Krishna", ", कृष्ण")) : "") + ", " + nm(PE.MONTH, PE.MONTH_HI, PE.purnimanta(mo, v.paksha === "S" ? 0 : 20)) + (mo.adhik ? t(" (Adhik)", " (अधिक)") : "") };
     });
     $("#fl").innerHTML = list.map(function (it) {
       var wd = new Date(Date.UTC(it.date[0], it.date[1] - 1, it.date[2])).getUTCDay();
-      return '<li><time datetime="' + iso(it.date[0], it.date[1], it.date[2]) + '"><a href="./?date=' + iso(it.date[0], it.date[1], it.date[2]) + '">' + it.date[2] + " " + (hi() ? MON_HI : MON)[it.date[1] - 1] + '</a><span class="wd">' + (hi() ? PE.VAAR_HI : WD)[wd] + "</span></time><b>" + esc(it.txt) + "</b></li>";
+      return '<li><time datetime="' + iso(it.date[0], it.date[1], it.date[2]) + '"><a href="./?date=' + iso(it.date[0], it.date[1], it.date[2]) + '">' + it.date[2] + " " + (hi() ? MON_HI : MON)[it.date[1] - 1] + '</a><span class="wd">' + (hi() ? PE.VAAR_HI : WD)[wd] + "</span></time><b>" +
+        (it.id ? '<a class="plain" href="' + it.id + '.html">' + esc(it.txt) + "</a>" : esc(it.txt)) + "</b></li>";
     }).join("");
     document.querySelectorAll(".tabs button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.tab === tab); });
   }
@@ -236,6 +237,54 @@
         esc(tithiName(it.tithi) + ", " + nm(PE.NAK, PE.NAK_HI, it.nak)) + "</b></li>";
     }).join("") || '<li class="note">' + t("No days in the next twelve months pass these checks.", "अगले बारह महीनों में कोई दिन इन जाँचों में नहीं आता।") + "</li>";
     document.querySelectorAll(".tabs button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.kind === mkind); });
+  }
+
+  /* ---------- page: one festival or vrat ---------- */
+  function renderFest() {
+    var p = place(), id = document.body.dataset.fest, td = todayLocal(p), list;
+    if (document.body.dataset.kind === "fest") {
+      list = PE.festivals([2025, 1, 1], [2030, 12, 31], p, id).map(function (f) { return { date: f.date, txt: "" }; });
+    } else {
+      var end = new Date(Date.UTC(td[0], td[1] - 1, td[2]) + 400 * DAY), to = [end.getUTCFullYear(), end.getUTCMonth() + 1, end.getUTCDate()];
+      if (to[0] > 2030) to = [2030, 12, 31];
+      list = PE.vrats(td, to, p).filter(function (v) { return v.id === id; }).map(function (v) {
+        var mo = PE.month(PE.sun(v.date[0], v.date[1], v.date[2], p).rise), sh = v.paksha === "S";
+        var txt = id === "ekadashi" ? PE.ekadashiName(mo, sh, hi()) : id === "purnima" || id === "amavasya" ? nm(PE.MONTH, PE.MONTH_HI, PE.purnimanta(mo, sh ? 0 : 20)) : sh ? t("Shukla", "शुक्ल") : t("Krishna", "कृष्ण");
+        return { date: v.date, txt: txt + (mo.adhik ? t(" (Adhik)", " (अधिक)") : "") };
+      });
+    }
+    var now = Date.UTC(td[0], td[1] - 1, td[2]), next = list.find(function (it) { return Date.UTC(it.date[0], it.date[1] - 1, it.date[2]) >= now; });
+    $("#fd").innerHTML = list.map(function (it) {
+      var ms = Date.UTC(it.date[0], it.date[1] - 1, it.date[2]), wd = new Date(ms).getUTCDay(), past = ms < now;
+      return '<li' + (past ? ' class="past"' : "") + '><time datetime="' + iso(it.date[0], it.date[1], it.date[2]) + '"><a href="./?date=' + iso(it.date[0], it.date[1], it.date[2]) + '">' + it.date[2] + " " + (hi() ? MON_HI : MON)[it.date[1] - 1] + " " + it.date[0] +
+        '</a><span class="wd">' + (hi() ? PE.VAAR_HI : WD)[wd] + "</span></time><b>" + esc(it.txt || "") + (it === next ? ' <span class="chip red">' + t("Next", "अगली") + "</span>" : "") + "</b></li>";
+    }).join("") || '<li class="note">' + t("No dates left before the end of 2030, the last year this site covers.", "2030 के अंत तक कोई तारीख नहीं बची; साइट 2030 तक की गणना करती है।") + "</li>";
+    $("#fd-note").textContent = t("Dates for ", "तारीखें ") + placeName(p) + t(". Pick your city above.", " के लिए। ऊपर अपना शहर चुनें।");
+  }
+
+  /* ---------- page: birth rashi ---------- */
+  var WEST = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+  function renderRashi() {
+    var dv = $("#bdate").value, tv = $("#btime").value, zv = $("#bzone").value, out = $("#rout");
+    if (!dv || !tv) { out.innerHTML = '<p class="note">' + t("Enter the date and time of birth.", "जन्म की तारीख और समय भरें।") + "</p>"; return; }
+    var a = dv.split("-").map(Number), b = tv.split(":").map(Number);
+    if (a[0] < 1900 || a[0] > 2100) { out.innerHTML = '<p class="note">' + t("Pick a year from 1900 to 2100.", "1900 से 2100 के बीच का साल चुनें।") + "</p>"; return; }
+    var off = zv === "IN" ? PE.indiaOffset(a[0], a[1], a[2]) : +zv, ms = Date.UTC(a[0], a[1] - 1, a[2], b[0], b[1]) - off * 3600000, r = PE.birthSigns(ms);
+    function deg(lon) { var x = lon % 30, d = Math.floor(x); return d + "\u00b0 " + Math.floor((x - d) * 60) + "'"; }
+    function rashi(i) { return hi() ? PE.RASHI_HI[i] : PE.RASHI[i] + " (" + WEST[i] + ")"; }
+    var edges = [];
+    if (r.near.moonRashi) edges.push(t("Moon rashi", "चंद्र राशि"));
+    if (r.near.nak) edges.push(t("nakshatra", "नक्षत्र")); else if (r.near.pada) edges.push(t("pada", "पद"));
+    if (r.near.sunRashi) edges.push(t("Sun rashi", "सूर्य राशि"));
+    var om = Math.round(off * 60);
+    out.innerHTML = '<div class="box" style="max-width:36rem"><dl class="rows">' +
+      row(t("Moon rashi (Chandra rashi)", "चंद्र राशि"), rashi(r.moonRashi) + ", " + deg(r.moon)) +
+      row(t("Nakshatra", "नक्षत्र"), nm(PE.NAK, PE.NAK_HI, r.nak) + ", " + t("pada ", "पद ") + r.pada) +
+      row(t("Sun rashi (sidereal)", "सूर्य राशि (निरयन)"), rashi(r.sunRashi) + ", " + deg(r.sun)) +
+      row(t("Clock time used", "घड़ी का समय"), "UTC" + (om < 0 ? "-" : "+") + Math.floor(Math.abs(om) / 60) + ":" + String(Math.abs(om) % 60).padStart(2, "0")) +
+      "</dl></div>" +
+      (edges.length ? '<p class="edge">' + esc(t("Close to a boundary (" + edges.join(", ") + "): a few minutes' difference in the birth time can change it. Check the exact time on the birth record.",
+        "सीमा के पास (" + edges.join(", ") + "): जन्म के समय में कुछ मिनट का अंतर इसे बदल सकता है। जन्म प्रमाण पत्र पर सही समय देखें।")) + "</p>" : "");
   }
 
   /* ---------- shared controls ---------- */
@@ -262,7 +311,13 @@
 
     var page = document.body.dataset.page;
     if (!page || page === "info") { if (lb) lb.addEventListener("click", function () { root.lang = hi() ? "en" : "hi"; store("pc-lang", root.lang); paint(); }); return; }
-    render = page === "today" ? renderToday : page === "calendar" ? renderCalendar : page === "muhurat" ? renderMuhurat : renderFestivals;
+    if (page === "rashi") {
+      ["#bdate", "#btime", "#bzone"].forEach(function (k) { $(k).addEventListener("change", renderRashi); });
+      if (lb) lb.addEventListener("click", function () { root.lang = hi() ? "en" : "hi"; store("pc-lang", root.lang); paint(); renderRashi(); });
+      renderRashi();
+      return;
+    }
+    render = page === "today" ? renderToday : page === "calendar" ? renderCalendar : page === "muhurat" ? renderMuhurat : page === "fest" ? renderFest : renderFestivals;
     var city = $("#city");
     fetch("assets/events.json").then(function (r) { return r.json(); }).then(function (j) {
       PE.load(j);

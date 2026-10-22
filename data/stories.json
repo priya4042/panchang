@@ -1,0 +1,286 @@
+{
+ "updated": "2026-10-23",
+ "note": "Why and how each festival and vrat is observed, in English and Hindi. Shared by the app and the website.",
+ "stories": {
+  "ganesh-jayanti": {
+   "en": "Ganesh Jayanti",
+   "hi": "गणेश जयंती",
+   "why_en": "Ganesh Jayanti, also called Maghi Ganesh Chaturthi or Tilkund Chaturthi, falls on the fourth day of the bright half of Magha. Many traditions hold it as the birthday of Lord Ganesha, and it is observed most widely in Maharashtra and the Konkan coast.",
+   "why_hi": "गणेश जयंती, जिसे माघी गणेश चतुर्थी या तिलकुंद चतुर्थी भी कहते हैं, माघ शुक्ल चतुर्थी को आती है। कई परंपराओं में इसे भगवान गणेश का जन्मदिन माना जाता है, और यह सबसे अधिक महाराष्ट्र और कोंकण में मनाई जाती है।",
+   "how_en": "Devotees fast and worship Ganesha at midday with durva grass and modak, and many offer sweets made with sesame (til). Temples hold special pujas; customs vary by region.",
+   "how_hi": "भक्त व्रत रखते हैं और मध्याह्न में दूर्वा और मोदक से गणेश जी की पूजा करते हैं, कई लोग तिल के लड्डू चढ़ाते हैं। मंदिरों में विशेष पूजा होती है; रीति-रिवाज क्षेत्र के अनुसार अलग होते हैं।"
+  },
+  "vasant-panchami": {
+   "en": "Vasant Panchami",
+   "hi": "वसंत पंचमी",
+   "why_en": "Vasant Panchami, on the fifth day of the bright half of Magha, welcomes the coming of spring. Many people worship Goddess Saraswati, who is linked with knowledge, music and the arts.",
+   "why_hi": "माघ शुक्ल पंचमी को आने वाली वसंत पंचमी वसंत ऋतु के आगमन का स्वागत है। कई लोग इस दिन ज्ञान, संगीत और कला की देवी सरस्वती की पूजा करते हैं।",
+   "how_en": "People wear yellow, offer yellow flowers and sweets, and place books, pens and instruments before Saraswati. Many families begin a child's learning on this day, and in Punjab and nearby areas kites are flown.",
+   "how_hi": "लोग पीले कपड़े पहनते हैं, पीले फूल और मिठाई चढ़ाते हैं, और किताबें, कलम और वाद्य सरस्वती के सामने रखते हैं। कई परिवार इस दिन बच्चे की पढ़ाई (विद्यारंभ) शुरू करते हैं, और पंजाब व आसपास पतंगें उड़ाई जाती हैं।"
+  },
+  "maha-shivratri": {
+   "en": "Maha Shivratri",
+   "hi": "महाशिवरात्रि",
+   "why_en": "Maha Shivratri is the great night of Lord Shiva, on the fourteenth night of the dark half of Phalguna (Magha in the amanta calendar). Traditions link it with the marriage of Shiva and Parvati and with keeping awake in his worship.",
+   "why_hi": "महाशिवरात्रि भगवान शिव की महान रात्रि है, जो फाल्गुन कृष्ण चतुर्दशी (अमांत कैलेंडर में माघ) को आती है। परंपराएँ इसे शिव-पार्वती विवाह और शिव की आराधना में रात भर जागने से जोड़ती हैं।",
+   "how_en": "Devotees fast and offer water, milk and bel leaves to the Shivling, chanting Om Namah Shivaya. Worship goes on through the night in four parts (prahar), and the midnight (nishita) puja is the main one.",
+   "how_hi": "भक्त व्रत रखते हैं और ॐ नमः शिवाय का जाप करते हुए शिवलिंग पर जल, दूध और बेलपत्र चढ़ाते हैं। पूजा रात भर चार प्रहरों में होती है, और निशीथ काल (आधी रात) की पूजा मुख्य मानी जाती है।"
+  },
+  "holika-dahan": {
+   "en": "Holika Dahan",
+   "hi": "होलिका दहन",
+   "why_en": "Holika Dahan is the bonfire on the full moon night of Phalguna, the evening before Holi. It recalls the story of Prahlad, whose faith in Lord Vishnu kept him safe while Holika was burned.",
+   "why_hi": "होलिका दहन फाल्गुन पूर्णिमा की रात, होली से पहले की शाम, होता है। यह प्रह्लाद की कथा की याद दिलाता है, जिनकी विष्णु भक्ति ने उन्हें बचाया और होलिका जल गई।",
+   "how_en": "Communities build a pyre of wood and cow-dung cakes, do a short puja and light it after sunset, outside the Bhadra period. People walk around the fire and offer new grain, coconut and ears of wheat.",
+   "how_hi": "लोग लकड़ी और उपलों से होलिका सजाते हैं, छोटी पूजा करते हैं और सूर्यास्त के बाद भद्रा काल से बाहर उसे जलाते हैं। लोग अग्नि की परिक्रमा करते हैं और नया अनाज, नारियल और गेहूँ की बालियाँ अर्पित करते हैं।"
+  },
+  "holi": {
+   "en": "Holi",
+   "hi": "होली",
+   "why_en": "Holi, the festival of colours, is played on the day after Holika Dahan, which begins Chaitra in the purnimanta calendar. It marks the arrival of spring and is linked with the story of Prahlad and with Krishna's play with colours in Braj.",
+   "why_hi": "रंगों का त्योहार होली होलिका दहन के अगले दिन खेली जाती है, जिससे पूर्णिमांत कैलेंडर में चैत्र शुरू होता है। यह वसंत के आगमन का पर्व है और प्रह्लाद की कथा तथा ब्रज में कृष्ण की रंग-लीला से जुड़ा है।",
+   "how_en": "People put coloured powder (gulal) and coloured water on each other, visit friends and relatives, and share sweets such as gujiya. In Mathura, Vrindavan and Barsana the celebrations go on for several days.",
+   "how_hi": "लोग एक-दूसरे को गुलाल और रंग लगाते हैं, मित्रों और रिश्तेदारों से मिलते हैं, और गुझिया जैसी मिठाइयाँ बाँटते हैं। मथुरा, वृंदावन और बरसाना में उत्सव कई दिन चलता है।"
+  },
+  "chaitra-navratri": {
+   "en": "Chaitra Navratri begins, Gudi Padwa, Ugadi",
+   "hi": "चैत्र नवरात्रि आरंभ, गुड़ी पड़वा, उगादि",
+   "why_en": "Chaitra Navratri begins on the first day of the bright half of Chaitra, which also starts the Hindu lunar new year (Vikram Samvat). Maharashtra marks the same day as Gudi Padwa, and Karnataka, Andhra Pradesh and Telangana as Ugadi.",
+   "why_hi": "चैत्र नवरात्रि चैत्र शुक्ल प्रतिपदा से शुरू होती है, जिस दिन हिंदू नव वर्ष (विक्रम संवत) भी शुरू होता है। महाराष्ट्र में यही दिन गुड़ी पड़वा और कर्नाटक, आंध्र प्रदेश व तेलंगाना में उगादि के रूप में मनाया जाता है।",
+   "how_en": "Over nine nights the nine forms of Goddess Durga are worshipped, often with a kalash set up on the first day and a fast. In Maharashtra a gudi, a decorated pole with cloth and a pot, is raised at the door; for Ugadi families make pachadi, a dish with six tastes.",
+   "how_hi": "नौ रातों तक माँ दुर्गा के नौ रूपों की पूजा होती है, अक्सर पहले दिन कलश स्थापना और व्रत के साथ। महाराष्ट्र में दरवाज़े पर कपड़े और लोटे से सजी गुड़ी लगाई जाती है; उगादि पर छह स्वादों वाली पचड़ी बनती है।"
+  },
+  "ram-navami": {
+   "en": "Ram Navami",
+   "hi": "राम नवमी",
+   "why_en": "Ram Navami celebrates the birth of Lord Rama on the ninth day of the bright half of Chaitra. Rama's birth is traditionally placed at midday, so the main puja is done in the madhyahna period.",
+   "why_hi": "राम नवमी चैत्र शुक्ल नवमी को भगवान राम के जन्म का उत्सव है। परंपरा के अनुसार राम का जन्म दोपहर में हुआ था, इसलिए मुख्य पूजा मध्याह्न में होती है।",
+   "how_en": "Devotees fast, read or listen to the Ramayana, and hold a midday puja with a cradle for the infant Rama. Temples, especially in Ayodhya, hold processions and bhajans, and the day closes Chaitra Navratri.",
+   "how_hi": "भक्त व्रत रखते हैं, रामायण पढ़ते या सुनते हैं, और दोपहर में बाल राम के पालने के साथ पूजा करते हैं। मंदिरों में, विशेषकर अयोध्या में, शोभायात्रा और भजन होते हैं, और इसी दिन चैत्र नवरात्रि पूरी होती है।"
+  },
+  "hanuman-jayanti": {
+   "en": "Hanuman Jayanti",
+   "hi": "हनुमान जयंती",
+   "why_en": "Hanuman Jayanti marks the birth of Lord Hanuman, known for his strength and his devotion to Rama. In North India it is observed on the full moon of Chaitra; some southern states keep it in other months.",
+   "why_hi": "हनुमान जयंती भगवान हनुमान के जन्म का दिन है, जो अपनी शक्ति और राम भक्ति के लिए जाने जाते हैं। उत्तर भारत में यह चैत्र पूर्णिमा को मनाई जाती है; कुछ दक्षिणी राज्यों में यह दूसरे महीनों में मनाई जाती है।",
+   "how_en": "Devotees visit Hanuman temples from early morning, recite the Hanuman Chalisa and Sundar Kand, and offer sindoor, oil and laddoos. Many keep a fast for the day.",
+   "how_hi": "भक्त सुबह से हनुमान मंदिर जाते हैं, हनुमान चालीसा और सुंदरकांड का पाठ करते हैं, और सिंदूर, तेल और लड्डू चढ़ाते हैं। कई लोग दिन भर व्रत रखते हैं।"
+  },
+  "akshaya-tritiya": {
+   "en": "Akshaya Tritiya",
+   "hi": "अक्षय तृतीया",
+   "why_en": "Akshaya Tritiya falls on the third day of the bright half of Vaishakha. Akshaya means never diminishing, and the day is widely held to be good for new beginnings without looking for a separate muhurat.",
+   "why_hi": "अक्षय तृतीया वैशाख शुक्ल तृतीया को आती है। अक्षय का अर्थ है जो कभी कम न हो, और इस दिन को बिना अलग मुहूर्त देखे नए काम शुरू करने के लिए शुभ माना जाता है।",
+   "how_en": "People worship Vishnu and Lakshmi and give charity such as water pots, grain and clothes, and many buy gold or start new work. In some regions the day is also kept as Parashurama Jayanti.",
+   "how_hi": "लोग विष्णु और लक्ष्मी की पूजा करते हैं और जल से भरे घड़े, अनाज और कपड़े दान करते हैं, कई लोग सोना खरीदते या नया काम शुरू करते हैं। कुछ क्षेत्रों में यह दिन परशुराम जयंती के रूप में भी मनाया जाता है।"
+  },
+  "buddha-purnima": {
+   "en": "Buddha Purnima",
+   "hi": "बुद्ध पूर्णिमा",
+   "why_en": "Buddha Purnima, the full moon of Vaishakha, marks the birth, enlightenment and passing of Gautama Buddha in Buddhist tradition. It is a public holiday in India.",
+   "why_hi": "वैशाख पूर्णिमा को आने वाली बुद्ध पूर्णिमा बौद्ध परंपरा में गौतम बुद्ध के जन्म, ज्ञान प्राप्ति और महापरिनिर्वाण का दिन है। भारत में यह सार्वजनिक अवकाश है।",
+   "how_en": "Buddhists visit viharas, offer flowers and lamps, listen to teachings and keep the precepts, and many give charity. Large gatherings are held at Bodh Gaya, Sarnath and Kushinagar.",
+   "how_hi": "बौद्ध अनुयायी विहारों में जाते हैं, फूल और दीप अर्पित करते हैं, उपदेश सुनते हैं और शील का पालन करते हैं, कई लोग दान करते हैं। बोधगया, सारनाथ और कुशीनगर में बड़े आयोजन होते हैं।"
+  },
+  "guru-purnima": {
+   "en": "Guru Purnima",
+   "hi": "गुरु पूर्णिमा",
+   "why_en": "Guru Purnima, the full moon of Ashadha, is a day to honour teachers and spiritual guides. It is also called Vyasa Purnima, after the sage Ved Vyasa, traditionally credited with the Mahabharata and with arranging the Vedas.",
+   "why_hi": "आषाढ़ पूर्णिमा को आने वाली गुरु पूर्णिमा गुरुओं और शिक्षकों के सम्मान का दिन है। इसे व्यास पूर्णिमा भी कहते हैं, महर्षि वेद व्यास के नाम पर, जिन्हें परंपरा में महाभारत का रचयिता और वेदों का संकलनकर्ता माना जाता है।",
+   "how_en": "Students and disciples offer respect, flowers and gifts to their teachers and gurus. Many visit ashrams and temples, and some keep a fast or read scripture.",
+   "how_hi": "शिष्य और विद्यार्थी अपने गुरुओं और शिक्षकों को प्रणाम, फूल और भेंट अर्पित करते हैं। कई लोग आश्रम और मंदिर जाते हैं, और कुछ व्रत रखते या ग्रंथ पढ़ते हैं।"
+  },
+  "hariyali-teej": {
+   "en": "Hariyali Teej",
+   "hi": "हरियाली तीज",
+   "why_en": "Hariyali Teej falls on the third day of the bright half of Shravana, in the monsoon. It celebrates the union of Shiva and Parvati and is kept mostly by women in Rajasthan, Uttar Pradesh, Haryana, Bihar and nearby states.",
+   "why_hi": "हरियाली तीज सावन (श्रावण) शुक्ल तृतीया को, बरसात के मौसम में आती है। यह शिव-पार्वती के मिलन का उत्सव है और राजस्थान, उत्तर प्रदेश, हरियाणा, बिहार और आसपास के राज्यों में मुख्य रूप से महिलाएँ मनाती हैं।",
+   "how_en": "Women dress in green, put on mehndi, sing Teej songs and swing on decorated swings. Many married women fast and worship Parvati for the well-being of their families.",
+   "how_hi": "महिलाएँ हरे कपड़े पहनती हैं, मेहंदी लगाती हैं, तीज के गीत गाती हैं और सजे झूलों पर झूलती हैं। कई विवाहित महिलाएँ परिवार की खुशहाली के लिए व्रत रखकर पार्वती की पूजा करती हैं।"
+  },
+  "nag-panchami": {
+   "en": "Nag Panchami",
+   "hi": "नाग पंचमी",
+   "why_en": "Nag Panchami, on the fifth day of the bright half of Shravana, is a day of worship of the serpent deities (nagas). Snakes are seen often in the monsoon, and the day reflects a long tradition of respecting them.",
+   "why_hi": "सावन शुक्ल पंचमी को आने वाली नाग पंचमी नाग देवताओं की पूजा का दिन है। बरसात में साँप अधिक दिखते हैं, और यह दिन उनके प्रति सम्मान की पुरानी परंपरा को दर्शाता है।",
+   "how_en": "People worship images or drawings of snakes with milk, flowers and turmeric, and some keep a fast. Snake temples hold special prayers; customs vary by region.",
+   "how_hi": "लोग नागों की मूर्ति या चित्र की दूध, फूल और हल्दी से पूजा करते हैं, और कुछ लोग व्रत रखते हैं। नाग मंदिरों में विशेष पूजा होती है; रीति-रिवाज क्षेत्र के अनुसार अलग होते हैं।"
+  },
+  "raksha-bandhan": {
+   "en": "Raksha Bandhan",
+   "hi": "रक्षा बंधन",
+   "why_en": "Raksha Bandhan falls on the full moon of Shravana. It celebrates the bond between brothers and sisters, with the rakhi standing for a promise of care and protection.",
+   "why_hi": "रक्षा बंधन सावन पूर्णिमा को आता है। यह भाई-बहन के रिश्ते का उत्सव है, जिसमें राखी स्नेह और रक्षा के वचन का प्रतीक है।",
+   "how_en": "Sisters tie a rakhi on their brothers' wrists, apply tilak and offer sweets, and brothers give gifts. The rakhi is tied outside the Bhadra period, which is why the suggested time can move.",
+   "how_hi": "बहनें भाइयों की कलाई पर राखी बाँधती हैं, तिलक लगाती हैं और मिठाई खिलाती हैं, और भाई उपहार देते हैं। राखी भद्रा काल के बाहर बाँधी जाती है, इसलिए शुभ समय बदल सकता है।"
+  },
+  "janmashtami": {
+   "en": "Krishna Janmashtami",
+   "hi": "कृष्ण जन्माष्टमी",
+   "why_en": "Krishna Janmashtami marks the birth of Lord Krishna on the eighth day of the dark half of Bhadrapada (Shravana in the amanta calendar). Krishna is believed to have been born at midnight in Mathura.",
+   "why_hi": "कृष्ण जन्माष्टमी भाद्रपद कृष्ण अष्टमी (अमांत कैलेंडर में श्रावण) को भगवान कृष्ण के जन्म का उत्सव है। मान्यता है कि कृष्ण का जन्म मथुरा में आधी रात को हुआ था।",
+   "how_en": "Devotees fast through the day, decorate temples and homes with scenes (jhanki) from Krishna's life, and hold the main puja at midnight before breaking the fast. Some Vaishnava groups keep it a day later, and in Maharashtra Dahi Handi is held the next day.",
+   "how_hi": "भक्त दिन भर व्रत रखते हैं, मंदिरों और घरों को कृष्ण लीला की झाँकियों से सजाते हैं, और आधी रात को मुख्य पूजा के बाद व्रत खोलते हैं। कुछ वैष्णव संप्रदाय इसे एक दिन बाद मनाते हैं, और महाराष्ट्र में अगले दिन दही हांडी होती है।"
+  },
+  "hartalika-teej": {
+   "en": "Hartalika Teej",
+   "hi": "हरतालिका तीज",
+   "why_en": "Hartalika Teej, on the third day of the bright half of Bhadrapada, honours Parvati's devotion that led to her marriage with Shiva. It is kept mainly by women in North India, Maharashtra, Chhattisgarh and Jharkhand.",
+   "why_hi": "भाद्रपद शुक्ल तृतीया को आने वाली हरतालिका तीज पार्वती की उस तपस्या का सम्मान है जिससे उनका विवाह शिव से हुआ। इसे मुख्य रूप से उत्तर भारत, महाराष्ट्र, छत्तीसगढ़ और झारखंड की महिलाएँ मनाती हैं।",
+   "how_en": "Many women keep a strict fast, often without water, and worship clay images of Shiva and Parvati. They stay awake at night singing devotional songs and break the fast the next morning.",
+   "how_hi": "कई महिलाएँ कठिन व्रत रखती हैं, अक्सर बिना पानी के, और शिव-पार्वती की मिट्टी की प्रतिमाओं की पूजा करती हैं। वे रात भर भजन गाते हुए जागती हैं और अगली सुबह व्रत खोलती हैं।"
+  },
+  "ganesh-chaturthi": {
+   "en": "Ganesh Chaturthi",
+   "hi": "गणेश चतुर्थी",
+   "why_en": "Ganesh Chaturthi, on the fourth day of the bright half of Bhadrapada, celebrates Lord Ganesha, the remover of obstacles. It is a major festival in Maharashtra, Goa, Karnataka, Andhra Pradesh and Telangana.",
+   "why_hi": "भाद्रपद शुक्ल चतुर्थी को आने वाली गणेश चतुर्थी विघ्नहर्ता भगवान गणेश का उत्सव है। यह महाराष्ट्र, गोवा, कर्नाटक, आंध्र प्रदेश और तेलंगाना का बड़ा त्योहार है।",
+   "how_en": "Families and communities bring home clay images of Ganesha, worship them at midday and offer modak. The festival lasts from one and a half to ten days and ends with immersion (visarjan), often on Anant Chaturdashi; by tradition people avoid looking at the moon that night.",
+   "how_hi": "परिवार और मंडल गणेश जी की मिट्टी की प्रतिमा घर लाते हैं, मध्याह्न में पूजा करते हैं और मोदक चढ़ाते हैं। उत्सव डेढ़ से दस दिन चलता है और विसर्जन से पूरा होता है, अक्सर अनंत चतुर्दशी को; परंपरा के अनुसार उस रात चंद्रमा नहीं देखा जाता।"
+  },
+  "anant-chaturdashi": {
+   "en": "Anant Chaturdashi",
+   "hi": "अनंत चतुर्दशी",
+   "why_en": "Anant Chaturdashi, on the fourteenth day of the bright half of Bhadrapada, is dedicated to Lord Vishnu in his Anant (endless) form. It is also the day many Ganesh Chaturthi celebrations end.",
+   "why_hi": "भाद्रपद शुक्ल चतुर्दशी को आने वाली अनंत चतुर्दशी भगवान विष्णु के अनंत रूप को समर्पित है। इसी दिन कई जगह गणेश उत्सव का समापन भी होता है।",
+   "how_en": "Devotees worship Vishnu and tie a sacred thread with fourteen knots (anant sutra) on the arm. In Maharashtra and elsewhere Ganesha images are taken in processions for immersion.",
+   "how_hi": "भक्त विष्णु की पूजा करते हैं और बाँह पर चौदह गाँठों वाला अनंत सूत्र बाँधते हैं। महाराष्ट्र और दूसरी जगहों पर गणेश प्रतिमाओं की शोभायात्रा निकालकर विसर्जन किया जाता है।"
+  },
+  "sharad-navratri": {
+   "en": "Sharad Navratri begins",
+   "hi": "शारदीय नवरात्रि आरंभ",
+   "why_en": "Sharad Navratri begins on the first day of the bright half of Ashwin and is the main Navratri of the year. For nine nights Goddess Durga is worshipped, celebrating her victory over the demon Mahishasura.",
+   "why_hi": "शारदीय नवरात्रि आश्विन शुक्ल प्रतिपदा से शुरू होती है और साल की मुख्य नवरात्रि है। नौ रातों तक माँ दुर्गा की पूजा होती है, जो महिषासुर पर उनकी विजय का उत्सव है।",
+   "how_en": "Many set up a kalash (ghatasthapana) on the first day, fast, and worship one form of Durga each day. Gujarat celebrates with garba and dandiya, Bengal with Durga Puja pandals, and many families honour young girls (kanya puja) on Ashtami or Navami.",
+   "how_hi": "कई लोग पहले दिन घटस्थापना करते हैं, व्रत रखते हैं और हर दिन दुर्गा के एक रूप की पूजा करते हैं। गुजरात में गरबा और डांडिया, बंगाल में दुर्गा पूजा पंडाल होते हैं, और कई परिवार अष्टमी या नवमी को कन्या पूजन करते हैं।"
+  },
+  "dussehra": {
+   "en": "Dussehra (Vijayadashami)",
+   "hi": "दशहरा (विजयादशमी)",
+   "why_en": "Dussehra or Vijayadashami falls on the tenth day of the bright half of Ashwin, after Navratri. It celebrates the victory of good over evil: Rama's victory over Ravana and Durga's victory over Mahishasura.",
+   "why_hi": "दशहरा या विजयादशमी नवरात्रि के बाद आश्विन शुक्ल दशमी को आता है। यह बुराई पर अच्छाई की जीत का पर्व है: रावण पर राम की और महिषासुर पर दुर्गा की विजय।",
+   "how_en": "In North India effigies of Ravana, Meghnad and Kumbhakarna are burned in the evening after Ramlila. Many worship weapons and tools (shastra puja) and exchange shami or apta leaves, and in Bengal the day marks the immersion of Durga images.",
+   "how_hi": "उत्तर भारत में रामलीला के बाद शाम को रावण, मेघनाद और कुंभकरण के पुतले जलाए जाते हैं। कई लोग शस्त्र पूजा करते हैं और शमी या आपटा के पत्ते बाँटते हैं, और बंगाल में इस दिन दुर्गा प्रतिमाओं का विसर्जन होता है।"
+  },
+  "sharad-purnima": {
+   "en": "Sharad Purnima",
+   "hi": "शरद पूर्णिमा",
+   "why_en": "Sharad Purnima is the full moon of Ashwin, the full moon that follows the monsoon. It is linked with Goddess Lakshmi and, in Braj, with Krishna's raas lila.",
+   "why_hi": "शरद पूर्णिमा आश्विन मास की पूर्णिमा है, जो वर्षा ऋतु के बाद आती है। यह देवी लक्ष्मी से और ब्रज में कृष्ण की रास लीला से जुड़ी है।",
+   "how_en": "Families make kheer and keep it in the moonlight overnight, eating it the next morning. Many stay awake at night (Kojagari) and worship Lakshmi; in Bengal and Odisha Lakshmi Puja is done on this night.",
+   "how_hi": "परिवार खीर बनाकर रात भर चाँदनी में रखते हैं और अगली सुबह खाते हैं। कई लोग रात में जागकर (कोजागरी) लक्ष्मी की पूजा करते हैं; बंगाल और ओडिशा में इसी रात लक्ष्मी पूजा होती है।"
+  },
+  "karwa-chauth": {
+   "en": "Karwa Chauth",
+   "hi": "करवा चौथ",
+   "why_en": "Karwa Chauth falls on the fourth day of the dark half of Kartika (Ashwin in the amanta calendar). Married women keep it for the long life and well-being of their husbands, mainly in North and North-West India.",
+   "why_hi": "करवा चौथ कार्तिक कृष्ण चतुर्थी (अमांत कैलेंडर में आश्विन) को आता है। विवाहित महिलाएँ इसे पति की लंबी आयु और कुशलता के लिए रखती हैं, मुख्य रूप से उत्तर और उत्तर-पश्चिम भारत में।",
+   "how_en": "Women fast from sunrise without food or water, gather in the evening to hear the Karwa Chauth katha, and offer water to the moon when it rises. The fast is broken after seeing the moon, often through a sieve.",
+   "how_hi": "महिलाएँ सूर्योदय से बिना अन्न-जल के व्रत रखती हैं, शाम को करवा चौथ की कथा सुनती हैं, और चंद्रोदय पर चंद्रमा को अर्घ्य देती हैं। चंद्रमा देखकर, अक्सर छलनी से, व्रत खोला जाता है।"
+  },
+  "dhanteras": {
+   "en": "Dhanteras",
+   "hi": "धनतेरस",
+   "why_en": "Dhanteras, on the thirteenth day of the dark half of Kartika (Ashwin in the amanta calendar), begins the five days of Diwali. It honours Dhanvantari, linked with medicine and health, and Goddess Lakshmi.",
+   "why_hi": "कार्तिक कृष्ण त्रयोदशी (अमांत कैलेंडर में आश्विन) को आने वाला धनतेरस दीपावली के पाँच दिनों की शुरुआत है। यह आरोग्य के देवता धन्वंतरि और देवी लक्ष्मी को समर्पित है।",
+   "how_en": "Many buy gold, silver or new utensils, which is held to be auspicious on this day. In the evening a lamp for Yama (Yam deepak) is lit at the door, and Lakshmi and Kubera are worshipped.",
+   "how_hi": "कई लोग सोना, चाँदी या नए बर्तन खरीदते हैं, जिसे इस दिन शुभ माना जाता है। शाम को दरवाज़े पर यम का दीपक जलाया जाता है और लक्ष्मी व कुबेर की पूजा होती है।"
+  },
+  "diwali": {
+   "en": "Diwali (Lakshmi Puja)",
+   "hi": "दीपावली (लक्ष्मी पूजा)",
+   "why_en": "Diwali, the festival of lights, falls on the new moon of Kartika (Ashwin in the amanta calendar). It recalls Rama's return to Ayodhya and is the main night of Lakshmi Puja.",
+   "why_hi": "रोशनी का त्योहार दीपावली कार्तिक अमावस्या (अमांत कैलेंडर में आश्विन) को आता है। यह राम के अयोध्या लौटने की याद है और लक्ष्मी पूजा की मुख्य रात है।",
+   "how_en": "Homes are cleaned and decorated with lamps, rangoli and flowers. In the evening, during pradosh, families worship Lakshmi and Ganesha, then light diyas and share sweets; in Bengal and Odisha Kali Puja is done on this night.",
+   "how_hi": "घरों की सफ़ाई होती है और उन्हें दीयों, रंगोली और फूलों से सजाया जाता है। शाम को प्रदोष काल में परिवार लक्ष्मी-गणेश की पूजा करते हैं, फिर दीये जलाते और मिठाई बाँटते हैं; बंगाल और ओडिशा में इस रात काली पूजा होती है।"
+  },
+  "govardhan": {
+   "en": "Govardhan Puja",
+   "hi": "गोवर्धन पूजा",
+   "why_en": "Govardhan Puja, the day after Diwali, recalls how Krishna lifted Govardhan hill to shelter the people of Braj from heavy rain. It is also called Annakut, a mountain of food.",
+   "why_hi": "दीपावली के अगले दिन होने वाली गोवर्धन पूजा उस कथा की याद है जब कृष्ण ने भारी वर्षा से ब्रजवासियों को बचाने के लिए गोवर्धन पर्वत उठाया। इसे अन्नकूट भी कहते हैं, यानी अन्न का पहाड़।",
+   "how_en": "Devotees shape a small hill of cow dung or food to stand for Govardhan, worship it and walk around it, and temples offer Annakut, a spread of many dishes. In Gujarat it is New Year's day, and in Maharashtra it is Bali Pratipada.",
+   "how_hi": "भक्त गोबर या अन्न से गोवर्धन का छोटा पर्वत बनाकर उसकी पूजा और परिक्रमा करते हैं, और मंदिरों में अनेक व्यंजनों का अन्नकूट चढ़ता है। गुजरात में यह नव वर्ष का दिन है और महाराष्ट्र में बलि प्रतिपदा।"
+  },
+  "bhai-dooj": {
+   "en": "Bhai Dooj",
+   "hi": "भाई दूज",
+   "why_en": "Bhai Dooj, on the second day of the bright half of Kartika, closes the Diwali festival. It celebrates the bond of brothers and sisters and is linked with the story of Yama visiting his sister Yamuna.",
+   "why_hi": "कार्तिक शुक्ल द्वितीया को आने वाली भाई दूज दीपावली उत्सव का अंतिम दिन है। यह भाई-बहन के रिश्ते का पर्व है और यम के अपनी बहन यमुना से मिलने की कथा से जुड़ा है।",
+   "how_en": "Sisters apply tilak on their brothers' foreheads, pray for their long life and serve them a meal, and brothers give gifts. It is also known as Bhau Beej, Bhai Phonta and Yama Dwitiya.",
+   "how_hi": "बहनें भाइयों को तिलक लगाती हैं, उनकी लंबी आयु की कामना करती हैं और भोजन कराती हैं, और भाई उपहार देते हैं। इसे भाऊ बीज, भाई फोंटा और यम द्वितीया भी कहते हैं।"
+  },
+  "chhath": {
+   "en": "Chhath Puja (evening arghya)",
+   "hi": "छठ पूजा (संध्या अर्घ्य)",
+   "why_en": "Chhath Puja is dedicated to the Sun God and Chhathi Maiya and is kept mainly in Bihar, Jharkhand, eastern Uttar Pradesh and Nepal. The main day is the sixth day of the bright half of Kartika, when offerings are made to the setting sun.",
+   "why_hi": "छठ पूजा सूर्य देव और छठी मैया को समर्पित है और मुख्य रूप से बिहार, झारखंड, पूर्वी उत्तर प्रदेश और नेपाल में मनाई जाती है। मुख्य दिन कार्तिक शुक्ल षष्ठी है, जब डूबते सूर्य को अर्घ्य दिया जाता है।",
+   "how_en": "The four-day observance includes a holy bath, a strict fast without water, and arghya to the setting sun on the third evening and to the rising sun the next morning, standing in a river or pond. Offerings include thekua, fruit and sugarcane.",
+   "how_hi": "चार दिन के इस पर्व में नहाय-खाय, बिना पानी का कठिन व्रत, तीसरी शाम डूबते सूर्य को और अगली सुबह उगते सूर्य को नदी या तालाब में खड़े होकर अर्घ्य शामिल है। प्रसाद में ठेकुआ, फल और गन्ना होते हैं।"
+  },
+  "dev-uthani": {
+   "en": "Dev Uthani Ekadashi",
+   "hi": "देवउठनी एकादशी",
+   "why_en": "Dev Uthani or Prabodhini Ekadashi, on the eleventh day of the bright half of Kartika, ends Chaturmas, when Vishnu is said to wake from his four-month rest. Weddings and other ceremonies traditionally resume after it.",
+   "why_hi": "कार्तिक शुक्ल एकादशी को आने वाली देवउठनी या प्रबोधिनी एकादशी चातुर्मास का अंत है, जब माना जाता है कि भगवान विष्णु चार महीने की निद्रा से जागते हैं। परंपरा से इसके बाद विवाह और दूसरे संस्कार फिर शुरू होते हैं।",
+   "how_en": "Devotees fast and worship Vishnu, and in many homes Tulsi Vivah, the ceremonial marriage of the tulsi plant with Vishnu as Shaligram, is done on this day or the next.",
+   "how_hi": "भक्त व्रत रखकर विष्णु की पूजा करते हैं, और कई घरों में इसी दिन या अगले दिन तुलसी विवाह होता है, जिसमें तुलसी का विवाह शालिग्राम रूप में विष्णु से कराया जाता है।"
+  },
+  "kartik-purnima": {
+   "en": "Kartik Purnima",
+   "hi": "कार्तिक पूर्णिमा",
+   "why_en": "Kartik Purnima is the full moon of Kartika. It is linked with Shiva's victory over the demon Tripurasura, so it is also called Tripuri Purnima, and in Varanasi it is celebrated as Dev Deepawali.",
+   "why_hi": "कार्तिक पूर्णिमा कार्तिक मास की पूर्णिमा है। यह त्रिपुरासुर पर शिव की विजय से जुड़ी है, इसलिए इसे त्रिपुरी पूर्णिमा भी कहते हैं, और वाराणसी में इसे देव दीपावली के रूप में मनाया जाता है।",
+   "how_en": "People take a holy dip in rivers at dawn, give charity and light lamps in the evening, and the ghats of Varanasi are lit with lakhs of diyas. Sikhs celebrate the birth anniversary of Guru Nanak on this full moon.",
+   "how_hi": "लोग भोर में नदियों में स्नान करते हैं, दान देते हैं और शाम को दीप जलाते हैं, और वाराणसी के घाट लाखों दीयों से जगमगाते हैं। सिख इसी पूर्णिमा को गुरु नानक देव जी का प्रकाश पर्व मनाते हैं।"
+  },
+  "ekadashi": {
+   "en": "Ekadashi",
+   "hi": "एकादशी",
+   "why_en": "Ekadashi is the eleventh day of each lunar fortnight, so it comes twice a month. It is dedicated to Lord Vishnu, and each of the 24 Ekadashis of a year (26 when there is an adhik month) has its own name and story.",
+   "why_hi": "एकादशी हर पक्ष का ग्यारहवाँ दिन है, इसलिए यह महीने में दो बार आती है। यह भगवान विष्णु को समर्पित है, और साल की 24 एकादशियों (अधिक मास वाले साल में 26) में से हर एक का अपना नाम और कथा है।",
+   "how_en": "Devotees fast from sunrise, fully or with fruit, milk and other foods without grain, and avoid rice. The fast is broken the next day, on Dwadashi, within the parana time; Vaishnava calendars sometimes keep it a day later.",
+   "how_hi": "भक्त सूर्योदय से व्रत रखते हैं, पूरा निराहार या फल, दूध और बिना अनाज वाले भोजन के साथ, और चावल नहीं खाते। व्रत अगले दिन द्वादशी को पारण के समय में खोला जाता है; वैष्णव पंचांग कभी-कभी इसे एक दिन बाद रखते हैं।"
+  },
+  "pradosh": {
+   "en": "Pradosh Vrat",
+   "hi": "प्रदोष व्रत",
+   "why_en": "Pradosh Vrat falls on Trayodashi, the thirteenth day of each fortnight, so it comes twice a month. It is dedicated to Lord Shiva, and pradosh is the twilight time after sunset when the worship is done.",
+   "why_hi": "प्रदोष व्रत हर पक्ष की त्रयोदशी को आता है, इसलिए महीने में दो बार। यह भगवान शिव को समर्पित है, और प्रदोष सूर्यास्त के बाद का संध्या काल है जिसमें पूजा होती है।",
+   "how_en": "Devotees fast during the day and worship Shiva and Parvati in the pradosh period, about an hour and a half after sunset. A Pradosh on Monday is called Som Pradosh, and on Saturday Shani Pradosh.",
+   "how_hi": "भक्त दिन में व्रत रखते हैं और सूर्यास्त के बाद लगभग डेढ़ घंटे के प्रदोष काल में शिव-पार्वती की पूजा करते हैं। सोमवार को पड़ने वाला प्रदोष सोम प्रदोष और शनिवार वाला शनि प्रदोष कहलाता है।"
+  },
+  "sankashti": {
+   "en": "Sankashti Chaturthi",
+   "hi": "संकष्टी चतुर्थी",
+   "why_en": "Sankashti Chaturthi is the fourth day of the dark half of each lunar month and is dedicated to Lord Ganesha as the remover of troubles. When it falls on a Tuesday it is called Angaraki Chaturthi.",
+   "why_hi": "संकष्टी चतुर्थी हर महीने की कृष्ण चतुर्थी है और संकट हरने वाले भगवान गणेश को समर्पित है। मंगलवार को पड़ने पर इसे अंगारकी चतुर्थी कहते हैं।",
+   "how_en": "Devotees fast from sunrise and worship Ganesha in the evening. The fast is broken after the moon rises and water is offered to it, so the moonrise time matters.",
+   "how_hi": "भक्त सूर्योदय से व्रत रखते हैं और शाम को गणेश जी की पूजा करते हैं। चंद्रोदय के बाद चंद्रमा को अर्घ्य देकर व्रत खोला जाता है, इसलिए चंद्रोदय का समय महत्वपूर्ण है।"
+  },
+  "shivratri": {
+   "en": "Masik Shivratri",
+   "hi": "मासिक शिवरात्रि",
+   "why_en": "Masik Shivratri falls on the fourteenth day of the dark half of each lunar month, the night before Amavasya. It is a monthly night of Shiva worship; the one in Phalguna (Magha in the amanta calendar) is Maha Shivratri.",
+   "why_hi": "मासिक शिवरात्रि हर महीने की कृष्ण चतुर्दशी को, अमावस्या से पहले की रात आती है। यह शिव आराधना की मासिक रात्रि है; फाल्गुन (अमांत में माघ) वाली शिवरात्रि महाशिवरात्रि कहलाती है।",
+   "how_en": "Devotees fast and offer water, milk and bel leaves to the Shivling, with the main worship around midnight (nishita kaal). Many stay awake and chant through the night.",
+   "how_hi": "भक्त व्रत रखते हैं और शिवलिंग पर जल, दूध और बेलपत्र चढ़ाते हैं, मुख्य पूजा आधी रात (निशीथ काल) के आसपास होती है। कई लोग रात भर जागकर जाप करते हैं।"
+  },
+  "purnima": {
+   "en": "Purnima",
+   "hi": "पूर्णिमा",
+   "why_en": "Purnima is the full moon day, the fifteenth day of the bright half of each lunar month. Many festivals fall on a Purnima, and in the purnimanta calendar used in North India the month ends on it.",
+   "why_hi": "पूर्णिमा पूरे चाँद का दिन है, हर महीने के शुक्ल पक्ष का पंद्रहवाँ दिन। कई त्योहार पूर्णिमा को पड़ते हैं, और उत्तर भारत के पूर्णिमांत कैलेंडर में महीना इसी दिन पूरा होता है।",
+   "how_en": "Many people fast, take a holy dip, give charity and do the Satyanarayan puja. Some offer water to the moon in the evening.",
+   "how_hi": "कई लोग व्रत रखते हैं, पवित्र स्नान करते हैं, दान देते हैं और सत्यनारायण पूजा करते हैं। कुछ लोग शाम को चंद्रमा को अर्घ्य देते हैं।"
+  },
+  "amavasya": {
+   "en": "Amavasya",
+   "hi": "अमावस्या",
+   "why_en": "Amavasya is the new moon day, the last day of the dark half of each lunar month. It is traditionally a day to remember ancestors, and the amanta calendar used in South and West India ends the month on it.",
+   "why_hi": "अमावस्या नए चाँद का दिन है, हर महीने के कृष्ण पक्ष का अंतिम दिन। परंपरा से यह पितरों को याद करने का दिन है, और दक्षिण व पश्चिम भारत के अमांत कैलेंडर में महीना इसी दिन पूरा होता है।",
+   "how_en": "Many offer tarpan and shraddh for their ancestors, give charity and take a holy dip, and new ventures are often put off. An Amavasya on a Monday is called Somvati Amavasya.",
+   "how_hi": "कई लोग पितरों के लिए तर्पण और श्राद्ध करते हैं, दान देते हैं और पवित्र स्नान करते हैं, और नए काम अक्सर टाल दिए जाते हैं। सोमवार को पड़ने वाली अमावस्या सोमवती अमावस्या कहलाती है।"
+  }
+ }
+}

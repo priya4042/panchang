@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Builds the Panchang pages. Run: python _build/build.py  (python _build/gen_events.py refreshes the astronomy data)."""
-import os, html, json
+import os, html, json, subprocess, datetime
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://priya4042.github.io/panchang/"
@@ -38,7 +38,7 @@ def head(title, desc, path, extra=""):
 '''
 
 def header(cur):
-    links = [("./", "Today", "आज का पंचांग"), ("calendar.html", "Calendar", "कैलेंडर"), ("festivals.html", "Festivals", "त्योहार"), ("muhurat.html", "Muhurat", "मुहूर्त")]
+    links = [("./", "Today", "आज का पंचांग"), ("calendar.html", "Calendar", "कैलेंडर"), ("festivals.html", "Festivals", "त्योहार"), ("muhurat.html", "Muhurat", "मुहूर्त"), ("rashi.html", "Rashi", "राशि")]
     here = ' aria-current="page"'
     nav = "".join(f'<a href="{h}"{here if h == cur else ""}>{bi(e, i)}</a>' for h, e, i in links)
     return f'''<a class="skip" href="#main">{bi("Skip to content", "सामग्री पर जाएँ")}</a>
@@ -54,7 +54,7 @@ def header(cur):
 def footer():
     return f'''<footer class="foot"><div class="wrap">
   <span>&copy; <span id="year-now">2026</span> {bi("Panchang. A free tool by", "पंचांग। एक मुफ़्त टूल,")} <a href="https://priya4042.github.io/">Priya Tech Labs</a>. <a href="privacy.html">{bi("Privacy", "प्राइवेसी")}</a></span>
-  <nav aria-label="Footer"><a href="./">{bi("Today", "आज")}</a><a href="calendar.html">{bi("Calendar", "कैलेंडर")}</a><a href="festivals.html">{bi("Festivals", "त्योहार")}</a><a href="about.html">{bi("How it is calculated", "गणना कैसे होती है")}</a></nav>
+  <nav aria-label="Footer"><a href="./">{bi("Today", "आज")}</a><a href="calendar.html">{bi("Calendar", "कैलेंडर")}</a><a href="festivals.html">{bi("Festivals", "त्योहार")}</a><a href="rashi.html">{bi("Birth rashi", "जन्म राशि")}</a><a href="about.html">{bi("How it is calculated", "गणना कैसे होती है")}</a></nav>
   <span>{bi("Lahiri ayanamsa. Times for the chosen city. Local traditions can differ by a day.", "लाहिड़ी अयनांश। समय चुने गए शहर के अनुसार। स्थानीय परंपरा में एक दिन का अंतर हो सकता है।")}</span>
 </div></footer>
 <script src="assets/cities.js"></script>
@@ -122,6 +122,7 @@ def festivals():
   <div class="tabs" role="group" aria-label="List">{tb}</div>
   <ul class="fl" id="fl" aria-live="polite"></ul>
   <p class="note" style="margin-top:14px">{bi("Dates follow the rules most North Indian panchangs use, for the chosen city. Some regions keep a festival one day apart; check with your temple or family tradition.", "तारीखें चुने गए शहर के लिए उत्तर भारतीय पंचांगों के नियमों से हैं। कुछ क्षेत्रों में त्योहार एक दिन आगे-पीछे मनाया जाता है; अपने मंदिर या परिवार की परंपरा से मिलाएँ।")}</p>
+  <section class="sec"><h2>{bi("Why and how each one is observed", "हर त्योहार क्यों और कैसे मनाया जाता है")}</h2>{fest_links()}</section>
 </main>
 '''
     return head("Hindu Festivals, Ekadashi and Vrat Dates 2025 to 2030 - Panchang", "Every Hindu festival, Ekadashi, Purnima, Amavasya, Pradosh, Sankashti and Sankranti date for 2025 to 2030, worked out for your city.", "festivals.html") + body + footer()
@@ -140,6 +141,79 @@ def muhurat():
 </main>
 '''
     return head("Shubh Muhurat Dates - Marriage, Griha Pravesh, Vehicle - Panchang", "Good days in the next twelve months for marriage, griha pravesh, vehicle and property purchase and naming, from basic panchang rules, for your city.", "muhurat.html") + body + footer()
+
+STORIES = json.load(open(os.path.join(R, "data", "stories.json"), encoding="utf-8"))["stories"]
+VRAT_IDS = ["ekadashi", "pradosh", "sankashti", "shivratri", "purnima", "amavasya"]
+FEST_IDS = [k for k in STORIES if k not in VRAT_IDS]
+YEAR = min(max(datetime.date.today().year, 2025), 2030)
+MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+MON_HI = ["जन", "फ़र", "मार्च", "अप्रै", "मई", "जून", "जुला", "अग", "सित", "अक्टू", "नव", "दिस"]
+WD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+WD_HI = ["सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार", "रविवार"]
+
+def fest_dates():
+    out = subprocess.run(["node", os.path.join(R, "_build", "fest_dates.js"), str(YEAR)], capture_output=True, check=True)
+    return json.loads(out.stdout.decode("utf-8"))
+
+def fest_links(skip=None):
+    def links(ids): return "".join(f'<a class="chip" href="{k}.html">{bi(STORIES[k]["en"], STORIES[k]["hi"])}</a>' for k in ids if k != skip)
+    return f'<div class="links">{links(FEST_IDS)}</div><h3 style="margin-top:18px">{bi("Monthly vrats", "मासिक व्रत")}</h3><div class="links">{links(VRAT_IDS)}</div>'
+
+def fest_page(k, dates):
+    st, vrat = STORIES[k], k in VRAT_IDS
+    def li(d, en="", hi=""):
+        dt = datetime.date(*d)
+        return (f'<li><time datetime="{dt.isoformat()}"><a href="./?date={dt.isoformat()}">{bi(f"{d[2]} {MON[d[1] - 1]} {d[0]}", f"{d[2]} {MON_HI[d[1] - 1]} {d[0]}")}</a>'
+                f'<span class="wd">{bi(WD[dt.weekday()], WD_HI[dt.weekday()])}</span></time><b>{bi(en, hi) if en else ""}</b></li>')
+    rows = "".join(li(d[0], d[1][0], d[1][1]) for d in dates) if vrat else "".join(li(d) for d in dates)
+    years = f"{YEAR}" if vrat else "2025 to 2030"
+    title = f'{st["en"]} {"Dates " + str(YEAR) if vrat else "Dates 2025 to 2030"} - Why and How It Is Observed'
+    desc = st["why_en"].split(". ")[0].rstrip(".") + f'. Dates for {years}, why it is observed and how.'
+    body = f'''<body data-page="fest" data-fest="{k}" data-kind="{"vrat" if vrat else "fest"}">
+{header("festivals.html")}
+<main id="main" class="wrap">
+  {place_bar("")}
+  <article class="sec story">
+  <p class="note" style="margin:10px 0 0"><a href="festivals.html">{bi("All festivals", "सभी त्योहार")}</a></p>
+  <h1>{bi(st["en"], st["hi"])}</h1>
+  <h2>{bi("Dates", "तारीखें")}</h2>
+  <ul class="fl" id="fd" aria-live="polite">{rows}</ul>
+  <p class="note" id="fd-note">{bi(f"Dates for New Delhi, {years}. Pick your city above.", f"नई दिल्ली की तारीखें, {years}। ऊपर अपना शहर चुनें।")}</p>
+  <h2>{bi("Why it is observed", "क्यों मनाया जाता है")}</h2>
+  <p>{bi(st["why_en"], st["why_hi"])}</p>
+  <h2>{bi("How it is observed", "कैसे मनाया जाता है")}</h2>
+  <p>{bi(st["how_en"], st["how_hi"])}</p>
+  <p class="note">{bi("Customs and dates can differ by region and family tradition; check with your temple or family priest.", "रीति-रिवाज और तारीखें क्षेत्र और परिवार की परंपरा के अनुसार अलग हो सकती हैं; अपने मंदिर या पुरोहित से मिलाएँ।")}</p>
+  <h2>{bi("Other festivals", "दूसरे त्योहार")}</h2>
+  {fest_links(k)}
+  </article>
+</main>
+'''
+    ld = {"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc, "inLanguage": ["en-IN", "hi-IN"], "url": BASE + k + ".html"}
+    return head(title, desc, k + ".html", '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>\n') + body + footer()
+
+def rashi():
+    zones = [("IN", "India (IST, with the 1942-45 war time)", "भारत (IST, 1942-45 का युद्धकालीन समय सहित)")] + [
+        (str(h), f"UTC{'+' if h >= 0 else '-'}{int(abs(h))}:{int(round(abs(h) % 1 * 60)):02d}", f"UTC{'+' if h >= 0 else '-'}{int(abs(h))}:{int(round(abs(h) % 1 * 60)):02d}")
+        for h in [5.75, 6, 6.5, 5, 4, 3, 2, 1, 0, -3, -4, -5, -6, -7, -8, 7, 8, 9, 10, 11, 12]]
+    opts = "".join(f'<option value="{v}">{esc(e)}</option>' for v, e, h in zones)
+    body = f'''<body data-page="rashi">
+{header("rashi.html")}
+<main id="main" class="wrap">
+  <section class="sec" style="padding-top:20px">
+  <h1>{bi("Birth rashi and nakshatra", "जन्म राशि और नक्षत्र")}</h1>
+  <p>{bi("Enter the date and time of birth to see the Moon sign (rashi), the nakshatra with its pada, and the Sun sign, by the sidereal zodiac Indian panchangs use.", "जन्म की तारीख और समय भरें और देखें चंद्र राशि, नक्षत्र और उसका पद, और सूर्य राशि, उसी निरयन पद्धति से जो भारतीय पंचांग लेते हैं।")}</p>
+  <div class="bar">
+    <div class="fld"><label for="bdate">{bi("Date of birth", "जन्म की तारीख")}</label><input type="date" id="bdate" min="1900-01-01" max="2100-12-31"></div>
+    <div class="fld"><label for="btime">{bi("Time of birth", "जन्म का समय")}</label><input type="time" id="btime"></div>
+    <div class="fld"><label for="bzone">{bi("Time zone", "समय क्षेत्र")}</label><select id="bzone">{opts}</select></div>
+  </div>
+  <div id="rout" aria-live="polite"></div>
+  <p class="note" style="margin-top:16px;max-width:48rem">{bi("Positions are geocentric with the Lahiri ayanamsa, the same as the rest of this site; the Moon's place is accurate to within about two minutes of birth time. For India the clock offset of the date is used, including the war time of 1942 to 1945 (UTC+6:30); before 1955 some cities kept their own local time (Bombay and Calcutta time), so use the time zone the birth record used. For a birth abroad, pick the offset that was in force that day, daylight saving included. This shows positions only and makes no predictions.", "स्थितियाँ भू-केंद्रीय हैं और लाहिड़ी अयनांश से हैं, जैसे इस साइट पर बाकी सब; चंद्रमा की स्थिति जन्म समय के लगभग दो मिनट के भीतर सही है। भारत के लिए उस तारीख का घड़ी समय लिया जाता है, 1942 से 1945 का युद्धकालीन समय (UTC+6:30) भी; 1955 से पहले कुछ शहर अपना स्थानीय समय (बॉम्बे और कलकत्ता टाइम) रखते थे, इसलिए जन्म प्रमाण पत्र वाला समय क्षेत्र लें। विदेश में जन्म हो तो उस दिन लागू समय (डेलाइट सेविंग सहित) चुनें। यह केवल ग्रह स्थिति दिखाता है, कोई भविष्यवाणी नहीं करता।")}</p>
+  </section>
+</main>
+'''
+    return head("Birth Rashi and Nakshatra Finder - Moon Sign by Date of Birth", "Find your Moon sign (rashi), nakshatra with pada and sidereal Sun sign from the date and time of birth, with the Lahiri ayanamsa. Births from 1900 to 2100.", "rashi.html") + body + footer()
 
 def about():
     paras = [("The Sun and Moon positions come from astronomy-engine, an open-source library that is accurate to well under a minute of arc. Every change of tithi, nakshatra, yoga, karana and sankranti from 2025 to 2030 was worked out once and is stored in a small file, so the site also works offline.",
@@ -176,16 +250,19 @@ def write(name, s):
 
 if __name__ == "__main__":
     write("index.html", today()); write("calendar.html", calendar()); write("festivals.html", festivals()); write("muhurat.html", muhurat()); write("about.html", about()); write("privacy.html", privacy())
+    write("rashi.html", rashi())
+    fd = fest_dates()
+    for k in STORIES: write(k + ".html", fest_page(k, fd.get(k, [])))
     open(os.path.join(R, "assets", "icon.svg"), "w", encoding="utf-8").write(LOGO.replace('<svg viewBox', '<svg xmlns="http://www.w3.org/2000/svg" viewBox').replace(' aria-hidden="true"', ''))
-    urls = ["", "calendar.html", "festivals.html", "muhurat.html", "about.html", "privacy.html"]
+    urls = ["", "calendar.html", "festivals.html", "muhurat.html", "rashi.html", "about.html", "privacy.html"] + [k + ".html" for k in STORIES]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n")
     write("manifest.webmanifest", json.dumps({"name": "Panchang - Tithi, Muhurat and Festivals", "short_name": "Panchang", "start_url": "./", "scope": "./", "display": "standalone",
         "background_color": "#FFFFFF", "theme_color": "#B71C1C", "lang": "en-IN", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
         {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"}, {"src": "assets/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, indent=2))
-    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/moon.js", "assets/cities.js", "muhurat.html", "assets/events.json", "assets/icon.svg"]
+    core = ["./", "index.html", "calendar.html", "festivals.html", "about.html", "privacy.html", "assets/panchang.css", "assets/app.js", "assets/engine.js", "assets/moon.js", "assets/cities.js", "muhurat.html", "rashi.html", "assets/events.json", "assets/icon.svg"]
     write("sw.js", '''// Network first so updates show at once; cached copy when offline.
-var CACHE = "panchang-v2";
+var CACHE = "panchang-v3";
 var CORE = ''' + json.dumps(core) + ''';
 self.addEventListener("install", function (e) { e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener("activate", function (e) {

@@ -52,7 +52,7 @@ html[lang="hi"] [data-only="en"], html[lang="en"] [data-only="hi"] { display: no
 .bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; padding: 18px 0 6px; }
 .fld { display: flex; flex-direction: column; gap: 4px; }
 .fld label { font-size: .85rem; font-weight: 600; color: var(--muted); }
-select, input[type="date"], input[type="month"], input[type="number"] { min-height: 44px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font: 600 1rem var(--f); padding: 8px 12px; }
+select, input[type="date"], input[type="month"], input[type="number"], input[type="time"] { min-height: 44px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font: 600 1rem var(--f); padding: 8px 12px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font: 600 .95rem var(--f); cursor: pointer; text-decoration: none; }
 .btn:hover { border-color: var(--kumkum); }
 .btn svg { width: 18px; height: 18px; }
@@ -141,3 +141,13 @@ select, input[type="date"], input[type="month"], input[type="number"] { min-heig
 .foot a { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 @media print { .top, .foot, .bar, .tabs { display: none !important; } }
+
+/* festival pages and birth rashi */
+.story h2 { margin-top: 22px; }
+.story > p { max-width: 48rem; }
+.fl li.past { opacity: .6; }
+.fl b a.plain, .fl b .plain { color: inherit; text-decoration: none; }
+.fl b a.plain:hover { color: var(--kumkum); text-decoration: underline; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links .chip { text-decoration: none; }
+.edge { margin-top: 12px; max-width: 36rem; padding: 10px 14px; border-radius: 12px; font-weight: 600; background: color-mix(in srgb, var(--kumkum) 12%, transparent); }

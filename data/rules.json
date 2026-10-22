@@ -1,7 +1,8 @@
 {
- "updated": "2026-10-22",
- "note": "Festival dates fixed by hand, as id:year -> YYYY-MM-DD. Bump 'updated' after a change.",
+ "updated": "2026-10-23",
+ "note": "Festival dates fixed by hand, as id:year -> YYYY-MM-DD. holidays: state code (ISO 3166-2:IN, e.g. MH, UP, DL) -> list of {date: YYYY-MM-DD, en, hi}, copied from the state's official notification only. Bump 'updated' after a change.",
  "festivals": {
   "holi:2026": "2026-03-04"
- }
+ },
+ "holidays": {}
 }
